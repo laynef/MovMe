@@ -2,7 +2,7 @@ import React from 'react'
 
 import Menu from '../component/Menu.jsx'
 
-class MasterPage extends React.Component {
+class HomePage extends React.Component {
 
     render() {
         return (
@@ -13,4 +13,4 @@ class MasterPage extends React.Component {
         }
 }
 
-module.exports = MasterPage
+module.exports = HomePage

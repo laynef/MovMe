@@ -6,7 +6,7 @@ const routes = require('./routes')
 
 let port = process.env.PORT || 3000
 
-app.use(express.static(__dirname + "../public"))
+app.use(express.static("public"))
 app.use(morgan('dev'))
 app.use(parser.json())
 
