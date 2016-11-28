@@ -11,7 +11,7 @@ class Selector extends React.Component {
             currMovie: {}
         }
     }
-    // image => http://image.tmdb.org/t/p/
+
     getMovieInfo() {
         axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key + '&sort_by=popularity.desc')
             .then((resp) => {
@@ -36,10 +36,10 @@ class Selector extends React.Component {
             <div>
 
                 <div>
-                    <img src={'http://image.tmdb.org/t/p/' + obj.poster_path} />
-                    <h2>{obj.title}</h2> 
-                    <p>{obj.vote_average}</p> 
-                    <p>{obj.overview}</p> 
+                    <img src={'http://image.tmdb.org/t/p/' + this.state.currMovie.poster_path} />
+                    <h2>{this.state.currMovie.title}</h2> 
+                    <p>{this.state.currMovie.vote_average}</p> 
+                    <p>{this.state.currMovie.overview}</p> 
                 </div>
 
                 <input type="submit" value="prev" />
