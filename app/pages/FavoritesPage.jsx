@@ -1,16 +1,14 @@
 import React from 'react'
 
-import Menu from '../component/Menu.jsx'
-
-class HomePage extends React.Component {
+class FavoritesPage extends React.Component {
 
     render() {
         return (
             <div>
-
+                
             </div>
             )
         }
 }
 
-module.exports = HomePage
+module.exports = FavoritesPage
