@@ -1,7 +1,7 @@
 {
   "name": "mvp-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hack Reactor MVP Project",
   "main": "webpack.config.js",
   "scripts": {
     "start": "node ./server/server.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/laynefaler/MovMe.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Layne Faler <laynefaler>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/laynefaler/MovMe/issues"

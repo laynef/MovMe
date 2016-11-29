@@ -2,15 +2,14 @@ import React from 'react'
 
 import Menu from '../component/Menu.jsx'
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
 
     render() {
         return (
             <div>
+                <h1>Welcome to MovMe!</h1>
                 <Menu />
             </div>
             )
         }
 }
-
-module.exports = HomePage

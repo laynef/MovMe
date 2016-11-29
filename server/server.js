@@ -10,7 +10,7 @@ app.use(express.static("public"))
 app.use(morgan('dev'))
 app.use(parser.json())
 
-app.use('/api', routes)
+// app.use('/api', routes)
 
 app.get('/', (req, res) => {
     res.sendFile('index.html')

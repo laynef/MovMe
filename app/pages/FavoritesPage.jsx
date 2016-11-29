@@ -1,6 +1,6 @@
 import React from 'react'
 
-class FavoritesPage extends React.Component {
+export class FavoritesPage extends React.Component {
 
     render() {
         return (
@@ -10,5 +10,3 @@ class FavoritesPage extends React.Component {
             )
         }
 }
-
-module.exports = FavoritesPage

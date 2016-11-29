@@ -1,6 +1,6 @@
 import React from 'react'
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
 
     render() {
         return (
@@ -10,5 +10,3 @@ class LoginPage extends React.Component {
             )
         }
 }
-
-module.exports = LoginPage

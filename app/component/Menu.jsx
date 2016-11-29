@@ -18,7 +18,7 @@ let MenuElements = menuItems.map(e => {
     )
 })
 
-class Menu extends React.Component {
+export class Menu extends React.Component {
 
     render() {
         return (
@@ -30,5 +30,3 @@ class Menu extends React.Component {
             )
         }
 }
-
-module.exports = Menu

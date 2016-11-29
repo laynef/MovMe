@@ -1,6 +1,6 @@
 import React from 'react'
 
-class SelectorPage extends React.Component {
+export class SelectorPage extends React.Component {
 
     render() {
         return (
@@ -10,5 +10,3 @@ class SelectorPage extends React.Component {
             )
         }
 }
-
-module.exports = SelectorPage
