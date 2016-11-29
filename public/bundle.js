@@ -28396,7 +28396,7 @@
 	    _createClass(Favorites, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
-	            this.displayFavorites();
+	            this.loadFavorites();
 	        }
 	    }, {
 	        key: 'loadFavorites',
@@ -28404,8 +28404,8 @@
 	            var _this2 = this;
 
 	            _axios2.default.get('/api/favorites').then(function (resp) {
-	                console.log('Get Favorites resp: ' + resp);
-	                _this2.setState({ list: resp });
+	                console.log('Get Favorites resp:', resp);
+	                _this2.setState({ list: resp.data });
 	            }).catch(function (err) {
 	                console.log('loadFavorites error: ' + err);
 	            });
@@ -28439,7 +28439,11 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement('div', null);
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.displayFavorites()
+	            );
 	        }
 	    }]);
 

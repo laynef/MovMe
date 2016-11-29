@@ -11,14 +11,14 @@ export default class Favorites extends React.Component {
     }
 
     componentWillMount() {
-        this.displayFavorites()
+        this.loadFavorites()
     }
 
     loadFavorites() {
         axios.get('/api/favorites')
             .then((resp) => {
-                console.log(`Get Favorites resp: ${resp}`)
-                this.setState({list: resp})
+                console.log(`Get Favorites resp:`, resp)
+                this.setState({list: resp.data})
             })
             .catch((err) => {
                 console.log(`loadFavorites error: ${err}`)
@@ -39,7 +39,7 @@ export default class Favorites extends React.Component {
     render() {
         return (
             <div>
-                
+                {this.displayFavorites()}
             </div>
             )
         }

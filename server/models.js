@@ -5,8 +5,7 @@ module.exports = {
         get: (res) => {
             Fav.findAll()
                 .then((resp) => {
-                    res.json(resp)
-                    res.sendStatus(200)
+                    res.status(200).send(resp)
                 })
         },
         post: (res, data) => {
