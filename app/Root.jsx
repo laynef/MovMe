@@ -12,10 +12,10 @@ class Root extends React.Component {
         return (
             <Router history={ browserHistory }>
                 <Route path="/" component={ MasterPage }>
-                <IndexRoute component={ HomePage } />
-                    <Route path="user" component={ LoginPage } />
-                    <Route path="selector" component={ SelectorPage } />
-                    <Route path="favorites" component={ FavoritesPage } />
+                <IndexRoute component={ HomePage }/>
+                    <Route path="user" component={ LoginPage }/>
+                    <Route path="selector" component={ SelectorPage }/>
+                    <Route path="favorites" component={ FavoritesPage }/>
                 </Route>
             </Router>
             )
