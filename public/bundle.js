@@ -28399,8 +28399,8 @@
 	            this.loadFavorites();
 	        }
 	    }, {
-	        key: 'conponentWillUpdate',
-	        value: function conponentWillUpdate() {
+	        key: 'componentWillUpdate',
+	        value: function componentWillUpdate() {
 	            this.loadFavorites();
 	        }
 	    }, {
@@ -28429,7 +28429,6 @@
 	            }).catch(function (err) {
 	                console.log('Error in deleting favorite: ' + err);
 	            });
-	            this.render();
 	        }
 	    }, {
 	        key: 'displayFavorites',

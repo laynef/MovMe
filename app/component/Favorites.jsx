@@ -14,7 +14,7 @@ export default class Favorites extends React.Component {
         this.loadFavorites()
     }
 
-    conponentWillUpdate() {
+    componentWillUpdate() {
         this.loadFavorites()
     }
 
@@ -43,7 +43,6 @@ export default class Favorites extends React.Component {
             .catch((err) => {
                 console.log(`Error in deleting favorite: ${err}`)
             })
-        this.render()
     }
 
     displayFavorites() {
