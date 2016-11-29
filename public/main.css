@@ -21,7 +21,20 @@
     text-decoration: none; }
 
 #selectorPage {
-  float: right; }
+  float: right;
+  width: 48.3%;
+  margin: 0 auto;
+  text-align: center; }
+  #selectorPage #selector {
+    background: white; }
+
+#favoritesPage {
+  float: right;
+  width: 48.3%;
+  margin: 0 auto;
+  text-align: center; }
+  #favoritesPage .favorite {
+    background-color: white; }
 
 html {
   background: url("http://cdn.makeuseof.com/wp-content/uploads/2015/04/movie-theater-revival-setup.jpg?92a7a3") no-repeat center center fixed;

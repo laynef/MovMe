@@ -26746,21 +26746,21 @@
 	                { id: 'selectorPage' },
 	                _react2.default.createElement(
 	                    'div',
-	                    null,
-	                    _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path }),
+	                    { id: 'selector' },
+	                    _react2.default.createElement('img', { className: 'movieImage', src: 'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path }),
 	                    _react2.default.createElement(
 	                        'h2',
-	                        null,
+	                        { className: 'movieTitle' },
 	                        this.state.currMovie.title
 	                    ),
 	                    _react2.default.createElement(
 	                        'p',
-	                        null,
+	                        { className: 'movieRating' },
 	                        this.state.currMovie.vote_average
 	                    ),
 	                    _react2.default.createElement(
 	                        'p',
-	                        null,
+	                        { className: 'movieSummary' },
 	                        this.state.currMovie.overview
 	                    )
 	                ),
@@ -28416,7 +28416,7 @@
 	            return this.state.list.map(function (e) {
 	                return _react2.default.createElement(
 	                    'div',
-	                    null,
+	                    { className: 'favorite' },
 	                    _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -28441,7 +28441,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { id: 'favoritesPage' },
 	                this.displayFavorites()
 	            );
 	        }

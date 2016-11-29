@@ -56,11 +56,11 @@ export default class Selector extends React.Component {
     render() {
         return (
             <div id="selectorPage">
-                <div>
-                    <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
-                    <h2>{this.state.currMovie.title}</h2> 
-                    <p>{this.state.currMovie.vote_average}</p> 
-                    <p>{this.state.currMovie.overview}</p>
+                <div id="selector">
+                    <img className="movieImage" src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
+                    <h2 className="movieTitle">{this.state.currMovie.title}</h2> 
+                    <p className="movieRating">{this.state.currMovie.vote_average}</p> 
+                    <p className="movieSummary">{this.state.currMovie.overview}</p>
                 </div>
 
                 <input type="submit" value="prev" onClick={this.lastMovie.bind(this)} />

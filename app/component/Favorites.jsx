@@ -27,7 +27,7 @@ export default class Favorites extends React.Component {
 
     displayFavorites() {
         return this.state.list.map(e => (
-            <div>
+            <div className="favorite">
                 <img src={'https://image.tmdb.org/t/p/w500' + e.poster_path} />
                 <h2>{e.title}</h2> 
                 <p>{e.vote_average}</p> 
@@ -38,7 +38,7 @@ export default class Favorites extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="favoritesPage">
                 {this.displayFavorites()}
             </div>
             )
