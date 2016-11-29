@@ -26584,7 +26584,7 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'Go Here'
+	                    'Selector'
 	                )
 	            );
 	        }
@@ -26631,7 +26631,15 @@
 	    _createClass(FavoritesPage, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement('div', null);
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Favorites'
+	                )
+	            );
 	        }
 	    }]);
 
