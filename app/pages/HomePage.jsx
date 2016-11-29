@@ -2,7 +2,7 @@ import React from 'react'
 
 import Menu from '../component/Menu.jsx'
 
-export class HomePage extends React.Component {
+export default class HomePage extends React.Component {
 
     render() {
         return (

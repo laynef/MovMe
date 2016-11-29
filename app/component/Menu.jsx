@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 
 let menuItems = [
     "Home",
-    "User",
     "Selector",
     "Favorites"
 ]
@@ -18,7 +17,7 @@ let MenuElements = menuItems.map(e => {
     )
 })
 
-export class Menu extends React.Component {
+export default class Menu extends React.Component {
 
     render() {
         return (

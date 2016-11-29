@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class SelectorPage extends React.Component {
+export default  class SelectorPage extends React.Component {
 
     render() {
         return (
