@@ -9,6 +9,7 @@ export default  class SelectorPage extends React.Component {
         return (
             <div>
                 <h1>Selector</h1>
+                <Selector />
             </div>
             )
         }

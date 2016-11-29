@@ -26585,7 +26585,8 @@
 	                    'h1',
 	                    null,
 	                    'Selector'
-	                )
+	                ),
+	                _react2.default.createElement(_Selector2.default, null)
 	            );
 	        }
 	    }]);
@@ -26697,7 +26698,22 @@
 
 	        _this.state = {
 	            movieIndex: 0,
-	            currMovie: {}
+	            currMovie: {
+	                "poster_path": "/9HE9xiNMEFJnCzndlkWD7oPfAOx.jpg",
+	                "adult": false,
+	                "overview": "In 1926, Newt Scamander arrives at the Magical Congress of the United States of America with a magically expanded briefcase, which houses a number of dangerous creatures and their habitats. When the creatures escape from the briefcase, it sends the American wizarding authorities after Newt, and threatens to strain even further the state of magical and non-magical relations.",
+	                "release_date": "2016-11-16",
+	                "genre_ids": [10751, 12, 14],
+	                "id": 259316,
+	                "original_title": "Fantastic Beasts and Where to Find Them",
+	                "original_language": "en",
+	                "title": "Fantastic Beasts and Where to Find Them",
+	                "backdrop_path": "/6I2tPx6KIiBB4TWFiWwNUzrbxUn.jpg",
+	                "popularity": 69.552406,
+	                "vote_count": 659,
+	                "video": false,
+	                "vote_average": 7.2
+	            }
 	        };
 	        return _this;
 	    }
@@ -26708,6 +26724,7 @@
 	            var _this2 = this;
 
 	            _axios2.default.get('https://api.themoviedb.org/3/discover/movie?api_key=' + _config2.default.api_key + '&sort_by=popularity.desc').then(function (resp) {
+	                console.log('$Getting resp: ' + resp);
 	                _this2.setState({ currMovie: resp.results[movieIndex] });
 	            }).catch(function (err) {
 	                console.log('getMovieInfo error: ' + err);
@@ -26717,11 +26734,15 @@
 	        key: 'nextMovie',
 	        value: function nextMovie() {
 	            this.setState({ movieIndex: this.state.movieIndex++ });
+	            this.setState({ currMovie: resp.results[movieIndex] });
+	            this.getMovieInfo();
 	        }
 	    }, {
 	        key: 'lastMovie',
 	        value: function lastMovie() {
 	            if (this.state.movieIndex > 0) this.setState({ movieIndex: this.state.movieIndex-- });
+	            this.setState({ currMovie: resp.results[movieIndex] });
+	            this.getMovieInfo();
 	        }
 	    }, {
 	        key: 'render',
@@ -26732,7 +26753,6 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    _react2.default.createElement('img', { src: 'http://image.tmdb.org/t/p/' + this.state.currMovie.poster_path }),
 	                    _react2.default.createElement(
 	                        'h2',
 	                        null,
@@ -26749,9 +26769,9 @@
 	                        this.state.currMovie.overview
 	                    )
 	                ),
-	                _react2.default.createElement('input', { type: 'submit', value: 'prev' }),
+	                _react2.default.createElement('input', { type: 'submit', value: 'prev', onClick: this.lastMovie }),
 	                _react2.default.createElement('input', { type: 'submit', value: 'fav' }),
-	                _react2.default.createElement('input', { type: 'submit', value: 'next' })
+	                _react2.default.createElement('input', { type: 'submit', value: 'next', onClick: this.nextMovie })
 	            );
 	        }
 	    }]);
