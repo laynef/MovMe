@@ -1,5 +1,5 @@
 const Sequelize = require('Sequelize')
-const db = new Sequelize('movMe', 'root', 'pass')
+const db = new Sequelize('movMe', 'root', '')
 
 const Fav = db.define('favorite', {
     poster_path: Sequelize.STRING(50),
