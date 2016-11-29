@@ -26764,9 +26764,9 @@
 	                        this.state.currMovie.overview
 	                    )
 	                ),
-	                _react2.default.createElement('input', { type: 'submit', value: 'prev', onClick: this.lastMovie.bind(this) }),
-	                _react2.default.createElement('input', { type: 'submit', value: 'fav', onClick: this.submitFavorite.bind(this) }),
-	                _react2.default.createElement('input', { type: 'submit', value: 'next', onClick: this.nextMovie.bind(this) })
+	                _react2.default.createElement('input', { className: 'toggleBtn', type: 'submit', value: 'prev', onClick: this.lastMovie.bind(this) }),
+	                _react2.default.createElement('input', { className: 'toggleBtn', type: 'submit', value: 'fav', onClick: this.submitFavorite.bind(this) }),
+	                _react2.default.createElement('input', { className: 'toggleBtn', type: 'submit', value: 'next', onClick: this.nextMovie.bind(this) })
 	            );
 	        }
 	    }]);
@@ -28455,7 +28455,7 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'button',
-	                        { onClick: _this3.deleteFavorite.bind(_this3, [i]) },
+	                        { className: 'toggleBtn', onClick: _this3.deleteFavorite.bind(_this3, [i]) },
 	                        'Delete Me'
 	                    )
 	                );

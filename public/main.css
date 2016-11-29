@@ -1,4 +1,6 @@
 #sideMenu {
+  padding: 0;
+  margin: 0;
   display: block;
   float: left;
   min-width: 200px;
@@ -7,7 +9,7 @@
   height: 100%;
   min-height: 100%; }
   #sideMenu ul {
-    list-style: none;
+    list-style-type: none;
     min-height: 100%;
     height: 100%; }
   #sideMenu li {
@@ -26,7 +28,8 @@
   margin: 0 auto;
   text-align: center; }
   #selectorPage #selector {
-    background: white; }
+    background: rgba(255, 255, 255, 0.5);
+    color: #0f0f0f; }
 
 #favoritesPage {
   float: right;
@@ -34,7 +37,8 @@
   margin: 0 auto;
   text-align: center; }
   #favoritesPage .favorite {
-    background-color: white; }
+    background: rgba(255, 255, 255, 0.5);
+    color: #0f0f0f; }
 
 html {
   background: url("http://cdn.makeuseof.com/wp-content/uploads/2015/04/movie-theater-revival-setup.jpg?92a7a3") no-repeat center center fixed;
@@ -49,4 +53,5 @@ body {
 
 h1 {
   float: right;
-  color: white; }
+  color: white;
+  text-align: center; }

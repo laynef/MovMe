@@ -51,7 +51,7 @@ export default class Favorites extends React.Component {
                 <h2>{e.title}</h2> 
                 <p>{e.vote_average}</p> 
                 <p>{e.overview}</p>
-                <button onClick={this.deleteFavorite.bind(this, [i])}>Delete Me</button>
+                <button className="toggleBtn" onClick={this.deleteFavorite.bind(this, [i])}>Delete Me</button>
             </div>
         ))
     }

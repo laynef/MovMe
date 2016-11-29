@@ -63,9 +63,9 @@ export default class Selector extends React.Component {
                     <p className="movieSummary">{this.state.currMovie.overview}</p>
                 </div>
 
-                <input type="submit" value="prev" onClick={this.lastMovie.bind(this)} />
-                <input type="submit" value="fav" onClick={this.submitFavorite.bind(this)} />
-                <input type="submit" value="next" onClick={this.nextMovie.bind(this)} />
+                <input className="toggleBtn" type="submit" value="prev" onClick={this.lastMovie.bind(this)} />
+                <input className="toggleBtn" type="submit" value="fav" onClick={this.submitFavorite.bind(this)} />
+                <input className="toggleBtn" type="submit" value="next" onClick={this.nextMovie.bind(this)} />
 
             </div>
             )
