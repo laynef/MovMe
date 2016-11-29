@@ -28399,21 +28399,44 @@
 	            this.loadFavorites();
 	        }
 	    }, {
+	        key: 'conponentWillUpdate',
+	        value: function conponentWillUpdate() {
+	            this.loadFavorites();
+	        }
+	    }, {
 	        key: 'loadFavorites',
 	        value: function loadFavorites() {
 	            var _this2 = this;
 
 	            _axios2.default.get('/api/favorites').then(function (resp) {
-	                console.log('Get Favorites resp:', resp);
 	                _this2.setState({ list: resp.data });
 	            }).catch(function (err) {
 	                console.log('loadFavorites error: ' + err);
 	            });
 	        }
 	    }, {
+	        key: 'deleteFavorite',
+	        value: function deleteFavorite(index) {
+	            var self = this;
+	            (0, _axios2.default)({
+	                method: 'DELETE',
+	                url: '/api/favorites',
+	                data: {
+	                    id: self.state.list[index].id
+	                }
+	            }).then(function (resp) {
+	                console.log('Successful delete');
+	            }).catch(function (err) {
+	                console.log('Error in deleting favorite: ' + err);
+	            });
+	            this.render();
+	        }
+	    }, {
 	        key: 'displayFavorites',
 	        value: function displayFavorites() {
-	            return this.state.list.map(function (e) {
+	            var _this3 = this;
+
+	            return this.state.list.map(function (e, i) {
 	                return _react2.default.createElement(
 	                    'div',
 	                    { className: 'favorite' },
@@ -28432,6 +28455,11 @@
 	                        'p',
 	                        null,
 	                        e.overview
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { onClick: _this3.deleteFavorite.bind(_this3, [i]) },
+	                        'Delete Me'
 	                    )
 	                );
 	            });

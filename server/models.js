@@ -16,8 +16,18 @@ module.exports = {
                     vote_average: data.vote_average
             })
             .then((resp) => {
-                res.sendStatus(201)
+                res.status(201)
             })
+        },
+        delete: (res, data) => {
+            Fav.destroy({
+                    where: {
+                        id: data.id
+                    }
+                })
+                .then((resp) => {
+                    res.sendStatus(202).send(resp)
+                })
         }
     }
 }

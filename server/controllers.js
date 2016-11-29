@@ -7,6 +7,9 @@ module.exports = {
         },
         post: (req, res) => {
             models.favorites.post(res, req.body)
+        },
+        delete: (req, res) => {
+            models.favorites.delete(res, req.body)
         }
     }
 }

@@ -14,10 +14,13 @@ export default class Favorites extends React.Component {
         this.loadFavorites()
     }
 
+    conponentWillUpdate() {
+        this.loadFavorites()
+    }
+
     loadFavorites() {
         axios.get('/api/favorites')
             .then((resp) => {
-                console.log(`Get Favorites resp:`, resp)
                 this.setState({list: resp.data})
             })
             .catch((err) => {
@@ -25,13 +28,32 @@ export default class Favorites extends React.Component {
             })
     }
 
+    deleteFavorite(index) {
+        var self = this;
+            axios({
+                method: 'DELETE',
+                url: '/api/favorites',
+                data: {
+                    id: self.state.list[index].id
+                }
+            })
+            .then((resp) => {
+                console.log(`Successful delete`)
+            })
+            .catch((err) => {
+                console.log(`Error in deleting favorite: ${err}`)
+            })
+        this.render()
+    }
+
     displayFavorites() {
-        return this.state.list.map(e => (
+        return this.state.list.map((e,i) => (
             <div className="favorite">
                 <img src={'https://image.tmdb.org/t/p/w500' + e.poster_path} />
                 <h2>{e.title}</h2> 
                 <p>{e.vote_average}</p> 
                 <p>{e.overview}</p>
+                <button onClick={this.deleteFavorite.bind(this, [i])}>Delete Me</button>
             </div>
         ))
     }

@@ -4,7 +4,7 @@
   "description": "Hack Reactor MVP Project",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "nodemon ./server/server.js",
     "build": "webpack -w"
   },
   "repository": {
