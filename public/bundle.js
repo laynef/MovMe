@@ -26743,7 +26743,7 @@
 	    }, {
 	        key: 'nextMovie',
 	        value: function nextMovie() {
-	            this.setState({ movieIndex: this.state.movieIndex + 1 });
+	            if (this.state.movieIndex < 20) this.setState({ movieIndex: this.state.movieIndex + 1 });
 	            this.getMovieInfo();
 	        }
 	    }, {

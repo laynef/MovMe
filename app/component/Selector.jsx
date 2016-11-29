@@ -47,8 +47,9 @@ export default class Selector extends React.Component {
     }
 
     nextMovie() {
-       this.setState({movieIndex: this.state.movieIndex+1})
-       this.getMovieInfo()
+        if (this.state.movieIndex < 20)
+            this.setState({movieIndex: this.state.movieIndex+1})
+            this.getMovieInfo()
     }
 
     lastMovie() {
