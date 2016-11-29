@@ -6,7 +6,7 @@ module.exports = {
             models.favorites.get()
         },
         post: (req, res) => {
-            models.favorites.post()
+            models.favorites.post(req.body)
         }
     }
 }

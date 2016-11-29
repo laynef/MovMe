@@ -28405,16 +28405,62 @@
 	var Favorites = function (_React$Component) {
 	    _inherits(Favorites, _React$Component);
 
-	    function Favorites() {
+	    function Favorites(props) {
 	        _classCallCheck(this, Favorites);
 
-	        return _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).call(this, props));
+
+	        _this.state = {
+	            list: []
+	        };
+	        return _this;
 	    }
 
 	    _createClass(Favorites, [{
+	        key: 'loadFavorites',
+	        value: function loadFavorites() {
+	            var _this2 = this;
+
+	            _axios2.default.get('/api/favorites').then(function (resp) {
+	                _this2.setState({ list: resp });
+	            }).catch(function (err) {
+	                console.log('loadFavorites error: ' + err);
+	            });
+	        }
+	    }, {
+	        key: 'displayFavorites',
+	        value: function displayFavorites() {
+	            return this.state.list.map(function (e) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        e.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        e.vote_average
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        e.overview
+	                    )
+	                );
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement('div', null);
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.displayFavorites.call(this)
+	            );
 	        }
 	    }]);
 
