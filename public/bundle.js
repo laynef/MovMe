@@ -26733,15 +26733,13 @@
 	    }, {
 	        key: 'nextMovie',
 	        value: function nextMovie() {
-	            this.setState({ movieIndex: this.state.movieIndex++ });
-	            this.setState({ currMovie: resp.results[movieIndex] });
+	            this.setState({ movieIndex: this.state.movieIndex + 1 });
 	            this.getMovieInfo();
 	        }
 	    }, {
 	        key: 'lastMovie',
 	        value: function lastMovie() {
-	            if (this.state.movieIndex > 0) this.setState({ movieIndex: this.state.movieIndex-- });
-	            this.setState({ currMovie: resp.results[movieIndex] });
+	            if (this.state.movieIndex > 0) this.setState({ movieIndex: this.state.movieIndex - 1 });
 	            this.getMovieInfo();
 	        }
 	    }, {
@@ -26769,9 +26767,9 @@
 	                        this.state.currMovie.overview
 	                    )
 	                ),
-	                _react2.default.createElement('input', { type: 'submit', value: 'prev', onClick: this.lastMovie }),
+	                _react2.default.createElement('input', { type: 'submit', value: 'prev', onClick: this.lastMovie.bind(this) }),
 	                _react2.default.createElement('input', { type: 'submit', value: 'fav' }),
-	                _react2.default.createElement('input', { type: 'submit', value: 'next', onClick: this.nextMovie })
+	                _react2.default.createElement('input', { type: 'submit', value: 'next', onClick: this.nextMovie.bind(this) })
 	            );
 	        }
 	    }]);

@@ -43,15 +43,13 @@ export default class Selector extends React.Component {
     }
 
     nextMovie() {
-       this.setState({movieIndex: this.state.movieIndex++})
-       this.setState({ currMovie: resp.results[movieIndex]})
+       this.setState({movieIndex: this.state.movieIndex+1})
        this.getMovieInfo()
     }
 
     lastMovie() {
         if (this.state.movieIndex > 0)
-            this.setState({movieIndex: this.state.movieIndex--})
-            this.setState({ currMovie: resp.results[movieIndex]})
+            this.setState({movieIndex: this.state.movieIndex-1})
             this.getMovieInfo()
     }
 
@@ -66,9 +64,9 @@ export default class Selector extends React.Component {
                     <p>{this.state.currMovie.overview}</p>
                 </div>
 
-                <input type="submit" value="prev" onClick={this.lastMovie} />
+                <input type="submit" value="prev" onClick={this.lastMovie.bind(this)} />
                 <input type="submit" value="fav" />
-                <input type="submit" value="next" onClick={this.nextMovie} />
+                <input type="submit" value="next" onClick={this.nextMovie.bind(this)} />
 
             </div>
             )
