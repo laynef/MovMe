@@ -1,30 +1,23 @@
-const db = require('../database/db')
+const Fav = require('../database/db')
 
 module.exports = {
     favorites: {
-        get: () => {
-            db.findAll({
-
-            })
-            .then((resp) => {
-
-            })
-            .catch((err) => {
-                console.log(`Get db method error: ${err}`)
-            })
+        get: (res) => {
+            Fav.findAll()
+                .then((resp) => {
+                    res.json(resp)
+                    res.sendStatus(200)
+                })
         },
-        post: (data) => {
-            db.create({
+        post: (res, data) => {
+            Fav.create({
                     image: data.image,
                     title: data.title,
                     overview: data.overview,
                     rating: data.rating
             })
             .then((resp) => {
-
-            })
-            .catch((err) => {
-                console.log(`Post db method error: ${err}`)
+                res.sendStatus(201)
             })
         }
     }
