@@ -2,11 +2,11 @@ const models = require('./models')
 
 module.exports = {
     favorites: {
-        get: () => {
-
+        get: (req, res) => {
+            models.favorites.get()
         },
-        post: () => {
-
+        post: (req, res) => {
+            models.favorites.post()
         }
     }
 }

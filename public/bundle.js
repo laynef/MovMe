@@ -26703,22 +26703,7 @@
 
 	        _this.state = {
 	            movieIndex: 0,
-	            currMovie: {
-	                "poster_path": "/9HE9xiNMEFJnCzndlkWD7oPfAOx.jpg",
-	                "adult": false,
-	                "overview": "In 1926, Newt Scamander arrives at the Magical Congress of the United States of America with a magically expanded briefcase, which houses a number of dangerous creatures and their habitats. When the creatures escape from the briefcase, it sends the American wizarding authorities after Newt, and threatens to strain even further the state of magical and non-magical relations.",
-	                "release_date": "2016-11-16",
-	                "genre_ids": [10751, 12, 14],
-	                "id": 259316,
-	                "original_title": "Fantastic Beasts and Where to Find Them",
-	                "original_language": "en",
-	                "title": "Fantastic Beasts and Where to Find Them",
-	                "backdrop_path": "/6I2tPx6KIiBB4TWFiWwNUzrbxUn.jpg",
-	                "popularity": 69.552406,
-	                "vote_count": 659,
-	                "video": false,
-	                "vote_average": 7.2
-	            }
+	            currMovie: _config2.default.firstMovie
 	        };
 	        return _this;
 	    }
@@ -26729,7 +26714,6 @@
 	            var _this2 = this;
 
 	            _axios2.default.get('https://api.themoviedb.org/3/discover/movie?api_key=' + _config2.default.api_key + '&sort_by=popularity.desc').then(function (resp) {
-	                console.log('$Getting resp: ' + resp.data.results[0]);
 	                _this2.setState({ currMovie: resp.data.results[_this2.state.movieIndex] });
 	            }).catch(function (err) {
 	                console.log('getMovieInfo error: ' + err);
@@ -26738,7 +26722,16 @@
 	    }, {
 	        key: 'postMovieInfo',
 	        value: function postMovieInfo() {
-	            _axios2.default.post('/api/favorites');
+	            _axios2.default.post('/api/favorites').then(function (resp) {
+	                console.log('Posting resp: ' + resp);
+	            }).catch(function (err) {
+	                console.log('postMovieInfo error: ' + err);
+	            });
+	        }
+	    }, {
+	        key: 'submitFavorite',
+	        value: function submitFavorite() {
+	            this.postMovieInfo();
 	        }
 	    }, {
 	        key: 'nextMovie',
@@ -26779,7 +26772,7 @@
 	                    )
 	                ),
 	                _react2.default.createElement('input', { type: 'submit', value: 'prev', onClick: this.lastMovie.bind(this) }),
-	                _react2.default.createElement('input', { type: 'submit', value: 'fav' }),
+	                _react2.default.createElement('input', { type: 'submit', value: 'fav', onClick: this.submitFavorite.bind(this) }),
 	                _react2.default.createElement('input', { type: 'submit', value: 'next', onClick: this.nextMovie.bind(this) })
 	            );
 	        }
@@ -28283,9 +28276,25 @@
 /* 266 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	module.exports = {
+	    firstMovie: {
+	        "poster_path": "/9HE9xiNMEFJnCzndlkWD7oPfAOx.jpg",
+	        "adult": false,
+	        "overview": "In 1926, Newt Scamander arrives at the Magical Congress of the United States of America with a magically expanded briefcase, which houses a number of dangerous creatures and their habitats. When the creatures escape from the briefcase, it sends the American wizarding authorities after Newt, and threatens to strain even further the state of magical and non-magical relations.",
+	        "release_date": "2016-11-16",
+	        "genre_ids": [10751, 12, 14],
+	        "id": 259316,
+	        "original_title": "Fantastic Beasts and Where to Find Them",
+	        "original_language": "en",
+	        "title": "Fantastic Beasts and Where to Find Them",
+	        "backdrop_path": "/6I2tPx6KIiBB4TWFiWwNUzrbxUn.jpg",
+	        "popularity": 69.552406,
+	        "vote_count": 659,
+	        "video": false,
+	        "vote_average": 7.2
+	    },
 	    api_key: 'de4f44a3c638131546b994dc9d2e602c',
 	    accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZTRmNDRhM2M2MzgxMzE1NDZiOTk0ZGM5ZDJlNjAyYyIsInN1YiI6IjU3M2NjMWYzOTI1MTQxNzQyNjAwMDE0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SXPESvln4j7IFhWWWmJNhWPrzf_2vG0oaIBNZ_XJhUY'
 	};
