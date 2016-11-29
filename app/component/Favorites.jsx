@@ -12,11 +12,7 @@ export default class Favorites extends React.Component {
 
     componentWillMount() {
         this.loadFavorites()
-    }
-
-    componentWillUpdate() {
-        this.loadFavorites()
-    }
+    }    
 
     loadFavorites() {
         axios.get('/api/favorites')
@@ -43,6 +39,9 @@ export default class Favorites extends React.Component {
             .catch((err) => {
                 console.log(`Error in deleting favorite: ${err}`)
             })
+        let copy = this.state.list.slice();
+        copy.splice(index, 1)
+        this.setState({list: copy})
     }
 
     displayFavorites() {

@@ -28399,11 +28399,6 @@
 	            this.loadFavorites();
 	        }
 	    }, {
-	        key: 'componentWillUpdate',
-	        value: function componentWillUpdate() {
-	            this.loadFavorites();
-	        }
-	    }, {
 	        key: 'loadFavorites',
 	        value: function loadFavorites() {
 	            var _this2 = this;
@@ -28429,6 +28424,9 @@
 	            }).catch(function (err) {
 	                console.log('Error in deleting favorite: ' + err);
 	            });
+	            var copy = this.state.list.slice();
+	            copy.splice(index, 1);
+	            this.setState({ list: copy });
 	        }
 	    }, {
 	        key: 'displayFavorites',
