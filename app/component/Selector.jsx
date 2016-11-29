@@ -42,6 +42,10 @@ export default class Selector extends React.Component {
             })
     }
 
+    postMovieInfo() {
+        axios.post('/api/favorites')
+    }
+
     nextMovie() {
        this.setState({movieIndex: this.state.movieIndex+1})
        this.getMovieInfo()

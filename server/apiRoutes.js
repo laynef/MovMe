@@ -1,6 +1,7 @@
-const apiRouter = require('express').Router()
+const router = require('express').Router()
 const controllers = require('./controllers')
 
-// add routes
+router.get('/favorites', controllers.favorites.get)
+router.post('/favorites', controllers.favorites.post)
 
-module.exports = apiRouter
+module.exports = router
