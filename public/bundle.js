@@ -26724,8 +26724,8 @@
 	            var _this2 = this;
 
 	            _axios2.default.get('https://api.themoviedb.org/3/discover/movie?api_key=' + _config2.default.api_key + '&sort_by=popularity.desc').then(function (resp) {
-	                console.log('$Getting resp: ' + resp);
-	                _this2.setState({ currMovie: resp.results[movieIndex] });
+	                console.log('$Getting resp: ' + resp.data.results[0]);
+	                _this2.setState({ currMovie: resp.data.results[_this2.state.movieIndex] });
 	            }).catch(function (err) {
 	                console.log('getMovieInfo error: ' + err);
 	            });
@@ -26747,10 +26747,11 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { id: 'selectorPage' },
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
+	                    _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path }),
 	                    _react2.default.createElement(
 	                        'h2',
 	                        null,

@@ -34,8 +34,8 @@ export default class Selector extends React.Component {
     getMovieInfo() {
         axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key + '&sort_by=popularity.desc')
             .then((resp) => {
-                console.log(`$Getting resp: ${resp}`)
-                this.setState({ currMovie: resp.results[movieIndex]})
+                console.log(`$Getting resp: ${resp.data.results[0]}`)
+                this.setState({ currMovie: resp.data.results[this.state.movieIndex]})
             })
             .catch((err) => {
                 console.log(`getMovieInfo error: ${err}`)
@@ -55,10 +55,9 @@ export default class Selector extends React.Component {
 
     render() {
         return (
-            <div>
-
+            <div id="selectorPage">
                 <div>
-                    {/*<img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />*/}
+                    <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
                     <h2>{this.state.currMovie.title}</h2> 
                     <p>{this.state.currMovie.vote_average}</p> 
                     <p>{this.state.currMovie.overview}</p>
