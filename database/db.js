@@ -1,11 +1,12 @@
-const Sequelize = require('Sequelize')
-const db = new Sequelize('movMe', 'root', '')
+const config = require('../config')
+const Sequelize = require('sequelize')
+const db = new Sequelize(config.dbUrl)
 
-const Fav = db.define('favorite', {
-    poster_path: Sequelize.STRING(50),
-    title: Sequelize.STRING(100),
+const Fav = db.define('favorites', {
+    poster_path: Sequelize.STRING(500),
+    title: Sequelize.STRING(500),
     overview: Sequelize.STRING(5000),
-    vote_averag: Sequelize.FLOAT(1)
+    vote_average: Sequelize.STRING(20)
 })
 
 Fav.sync()

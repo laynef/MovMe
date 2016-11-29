@@ -26710,8 +26710,13 @@
 	    }, {
 	        key: 'postMovieInfo',
 	        value: function postMovieInfo() {
-	            _axios2.default.post('/api/favorites').then(function (resp) {
-	                console.log('Posting resp: ' + resp);
+	            _axios2.default.post('/api/favorites', {
+	                poster_path: this.state.currMovie.poster_path,
+	                title: this.state.currMovie.title,
+	                overview: this.state.currMovie.overview,
+	                vote_average: JSON.stringify(this.state.currMovie.vote_average)
+	            }).then(function (resp) {
+	                console.log('postMovieInfo successful');
 	            }).catch(function (err) {
 	                console.log('postMovieInfo error: ' + err);
 	            });
@@ -28267,6 +28272,7 @@
 	"use strict";
 
 	module.exports = {
+	    dbUrl: 'postgres://nfxgkkeo:wbLt-ftFCzv1TOUGBNre21gjFJNlQagX@elmer.db.elephantsql.com:5432/nfxgkkeo',
 	    firstMovie: {
 	        "poster_path": "/9HE9xiNMEFJnCzndlkWD7oPfAOx.jpg",
 	        "adult": false,
@@ -28388,6 +28394,11 @@
 	    }
 
 	    _createClass(Favorites, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.displayFavorites();
+	        }
+	    }, {
 	        key: 'loadFavorites',
 	        value: function loadFavorites() {
 	            var _this2 = this;
@@ -28428,11 +28439,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.displayFavorites.call(this)
-	            );
+	            return _react2.default.createElement('div', null);
 	        }
 	    }]);
 

@@ -11,10 +11,10 @@ module.exports = {
         },
         post: (res, data) => {
             Fav.create({
-                    image: data.image,
+                    poster_path: data.poster_path,
                     title: data.title,
                     overview: data.overview,
-                    rating: data.rating
+                    vote_average: data.vote_average
             })
             .then((resp) => {
                 res.sendStatus(201)

@@ -23,9 +23,14 @@ export default class Selector extends React.Component {
     }
 
     postMovieInfo() {
-        axios.post('/api/favorites')
+        axios.post('/api/favorites', {
+                poster_path: this.state.currMovie.poster_path,
+                title: this.state.currMovie.title,
+                overview: this.state.currMovie.overview,
+                vote_average: JSON.stringify(this.state.currMovie.vote_average)
+            })
             .then((resp) => {
-                console.log(`Posting resp: ${resp}`)
+                console.log(`postMovieInfo successful`)
             })
             .catch((err) => {
                 console.log(`postMovieInfo error: ${err}`)
