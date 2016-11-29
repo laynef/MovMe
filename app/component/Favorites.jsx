@@ -13,6 +13,7 @@ export default class Favorites extends React.Component {
     loadFavorites() {
         axios.get('/api/favorites')
             .then((resp) => {
+                console.log(`Get Favorites resp: ${resp}`)
                 this.setState({list: resp})
             })
             .catch((err) => {
