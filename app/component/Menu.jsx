@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 let menuItems = [
     "Home",
@@ -8,11 +8,11 @@ let menuItems = [
 ]
 
 let MenuElements = menuItems.map(e => {
-    let linkName = e.replace(/[^a-z]/ig, '').toLowerCase()
+    let linkName = "/" + e.replace(/[^a-z]/ig, '').toLowerCase()
     if (e === "Home") { linkName = "" }
     return (
         <li>
-            <Link to={"/" + linkName}>{e}</Link>
+            <Link to={linkName}>{e}</Link>
         </li>
     )
 })

@@ -1,6 +1,0 @@
-const router = require('express').Router()
-const controllers = require('./controllers')
-
-// add routes
-
-module.exports = router
