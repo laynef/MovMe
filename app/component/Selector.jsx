@@ -13,7 +13,7 @@ export default class Selector extends React.Component {
     }
 
     getMovieInfo() {
-        axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key + '&sort_by=popularity.desc')
+        axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.api_key + '&sort_by=popularity.desc')
             .then((resp) => {
                 this.setState({ currMovie: resp.data.results[this.state.movieIndex]})
             })
