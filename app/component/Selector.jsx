@@ -1,4 +1,3 @@
-require('dotenv').config()
 import React from 'react'
 import axios from 'axios'
 
@@ -25,7 +24,7 @@ export default class Selector extends React.Component {
                 "backdrop_path": "/6I2tPx6KIiBB4TWFiWwNUzrbxUn.jpg",
                 "popularity": 69.552406,
                 "vote_count": 659,
-                
+
                 "video": false,
                 "vote_average": 7.2
             }
