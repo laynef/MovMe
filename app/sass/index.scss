@@ -1,0 +1,22 @@
+@import './menu.scss';
+@import './selector.scss';
+@import './favorites.scss';
+
+html { 
+  background: url('http://cdn.makeuseof.com/wp-content/uploads/2015/04/movie-theater-revival-setup.jpg?92a7a3') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  float: right;
+  color: white;
+  text-align: center;
+}
