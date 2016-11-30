@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const parser = require('body-parser')
@@ -15,5 +16,5 @@ app.use('/api', router)
 app.get('/', (req, res) => { res.sendFile('index.html') })
 
 app.listen(port, () => {
-    console.log(`Listening to port: http://localhost:${port}`)
+    console.log(`Listening to port: ${port}`)
 })

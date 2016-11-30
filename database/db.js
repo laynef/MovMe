@@ -1,6 +1,6 @@
-const config = require('../config')
+require('dotenv').config()
 const Sequelize = require('sequelize')
-const db = new Sequelize(config.dbUrl)
+const db = new Sequelize(process.env.dbUrl)
 
 const Fav = db.define('favorites', {
     poster_path: Sequelize.STRING(500),
