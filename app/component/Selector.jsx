@@ -35,7 +35,7 @@ export default class Selector extends React.Component {
         console.log(`before axios`)
         axios({
             method: 'get',
-            url: 'https://api.themoviedb.org/3/discover/movie?api_key=de4f44a3c638131546b994dc9d2e602c&sort_by=popularity.desc',
+            url: 'https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.api_key + '&sort_by=popularity.desc',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
