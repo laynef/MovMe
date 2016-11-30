@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
+  "scripts": {
+    "start": "nodemon ./server/server.js"
+  },
   "repository": {
     "url": "git+https://github.com/laynefaler/MovMe.git"
   },
