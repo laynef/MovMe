@@ -1,14 +1,39 @@
-require('dotenv').config()
 const Sequelize = require('sequelize')
-const db = new Sequelize(process.env.dbUrl)
+const config = require('../config')
+const db = new Sequelize(config.dbUrl)
 
-const Fav = db.define('favorites', {
-    poster_path: Sequelize.STRING(500),
-    title: Sequelize.STRING(500),
-    overview: Sequelize.STRING(5000),
-    vote_average: Sequelize.STRING(20)
+const User = db.define('user', {
+    id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    username: Sequelize.STRING,
+    email: Sequelize.STRING,
+    password: Sequelize.STRING
 })
 
+const Fav = db.define('favorites', {
+    id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    poster_path: Sequelize.STRING,
+    title: Sequelize.STRING,
+    overview: Sequelize.STRING,
+    vote_average: Sequelize.STRING
+})
+
+User.hasMany(Fav, {foreignKey: 'id'})
+Fav.belongsTo(User, {foreignKey: 'id'})
+
+User.sync()
 Fav.sync()
 
+module.exports = User
 module.exports = Fav
