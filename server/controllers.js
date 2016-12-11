@@ -17,7 +17,8 @@ module.exports = {
     movies: {
         get: (req, res) => {
             axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&sort_by=popularity.desc')
-                .then(resp => { res.json(resp) })
+                .then(resp => { 
+                    res.status(200).send(resp.data.results) })
                 .catch(err => {})
         }
     }

@@ -11,7 +11,8 @@ export default class Selector extends React.Component {
         super(props)
         this.state = {
             movieIndex: 0,
-            list: []
+            list: [],
+            currMovie: {}
         }
     }
 
@@ -23,7 +24,7 @@ export default class Selector extends React.Component {
         axios.get('/api/movies')
             .then((resp) => {
                 this.setState({ list: resp.data })
-                console.log(resp.data)
+                this.setState({ currMovie: this.state.list[this.state.movieIndex] })
             })
             .catch((err) => {
                 console.log(`getMovieInfo error: ${err}`)
@@ -66,12 +67,13 @@ export default class Selector extends React.Component {
             <div id="selectorPage">
                 <div id="selector">
                     <Card>
-                        <CardMedia overlay={<CardTitle title={this.state.list[this.state.movieIndex].title} />} >
-                        <img src={'https://image.tmdb.org/t/p/w500' + this.state.list[this.state.movieIndex].poster_path} />
+                    {console.log(this.state.currMovie)}
+                        <CardMedia overlay={<CardTitle title={this.state.currMovie.title} />} >
+                        <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
                         </CardMedia>
                         <CardText>
-                            <p className="movieRating">{this.state.list[this.state.movieIndex].vote_average}</p> 
-                            <p className="movieSummary">{this.state.list[this.state.movieIndex].overview}</p>
+                            <p className="movieRating">{this.state.currMovie.vote_average}</p> 
+                            <p className="movieSummary">{this.state.currMovie.overview}</p>
                         </CardText>
                         <RaisedButton label="Prev" onClick={this.lastMovie.bind(this)} />
                         <RaisedButton label="Fav" onClick={this.submitFavorite.bind(this)} />

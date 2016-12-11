@@ -72,11 +72,11 @@
 
 	var _SelectorPage2 = _interopRequireDefault(_SelectorPage);
 
-	var _FavoritesPage = __webpack_require__(491);
+	var _FavoritesPage = __webpack_require__(505);
 
 	var _FavoritesPage2 = _interopRequireDefault(_FavoritesPage);
 
-	var _index = __webpack_require__(493);
+	var _index = __webpack_require__(507);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -44262,9 +44262,9 @@
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _Card = __webpack_require__(495);
+	var _Card = __webpack_require__(491);
 
-	var _RaisedButton = __webpack_require__(513);
+	var _RaisedButton = __webpack_require__(503);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -44286,7 +44286,8 @@
 
 	        _this.state = {
 	            movieIndex: 0,
-	            list: []
+	            list: [],
+	            currMovie: {}
 	        };
 	        return _this;
 	    }
@@ -44303,7 +44304,7 @@
 
 	            _axios2.default.get('/api/movies').then(function (resp) {
 	                _this2.setState({ list: resp.data });
-	                console.log(resp.data);
+	                _this2.setState({ currMovie: _this2.state.list[_this2.state.movieIndex] });
 	            }).catch(function (err) {
 	                console.log('getMovieInfo error: ' + err);
 	            });
@@ -44351,10 +44352,11 @@
 	                    _react2.default.createElement(
 	                        _Card.Card,
 	                        null,
+	                        console.log(this.state.currMovie),
 	                        _react2.default.createElement(
 	                            _Card.CardMedia,
-	                            { overlay: _react2.default.createElement(_Card.CardTitle, { title: this.state.list[this.state.movieIndex].title }) },
-	                            _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + this.state.list[this.state.movieIndex].poster_path })
+	                            { overlay: _react2.default.createElement(_Card.CardTitle, { title: this.state.currMovie.title }) },
+	                            _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path })
 	                        ),
 	                        _react2.default.createElement(
 	                            _Card.CardText,
@@ -44362,12 +44364,12 @@
 	                            _react2.default.createElement(
 	                                'p',
 	                                { className: 'movieRating' },
-	                                this.state.list[this.state.movieIndex].vote_average
+	                                this.state.currMovie.vote_average
 	                            ),
 	                            _react2.default.createElement(
 	                                'p',
 	                                { className: 'movieSummary' },
-	                                this.state.list[this.state.movieIndex].overview
+	                                this.state.currMovie.overview
 	                            )
 	                        ),
 	                        _react2.default.createElement(_RaisedButton2.default, { label: 'Prev', onClick: this.lastMovie.bind(this) }),
@@ -45908,221 +45910,35 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Favorites = __webpack_require__(492);
-
-	var _Favorites2 = _interopRequireDefault(_Favorites);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var FavoritesPage = function (_React$Component) {
-	    _inherits(FavoritesPage, _React$Component);
-
-	    function FavoritesPage() {
-	        _classCallCheck(this, FavoritesPage);
-
-	        return _possibleConstructorReturn(this, (FavoritesPage.__proto__ || Object.getPrototypeOf(FavoritesPage)).apply(this, arguments));
-	    }
-
-	    _createClass(FavoritesPage, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_Favorites2.default, null)
-	            );
-	        }
-	    }]);
-
-	    return FavoritesPage;
-	}(_react2.default.Component);
-
-	exports.default = FavoritesPage;
-
-/***/ },
-/* 492 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _axios = __webpack_require__(465);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Favorites = function (_React$Component) {
-	    _inherits(Favorites, _React$Component);
-
-	    function Favorites(props) {
-	        _classCallCheck(this, Favorites);
-
-	        var _this = _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).call(this, props));
-
-	        _this.state = {
-	            list: []
-	        };
-	        return _this;
-	    }
-
-	    _createClass(Favorites, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            this.loadFavorites();
-	        }
-	    }, {
-	        key: 'loadFavorites',
-	        value: function loadFavorites() {
-	            var _this2 = this;
-
-	            _axios2.default.get('/api/favorites').then(function (resp) {
-	                _this2.setState({ list: resp.data });
-	            }).catch(function (err) {
-	                console.log('loadFavorites error: ' + err);
-	            });
-	        }
-	    }, {
-	        key: 'deleteFavorite',
-	        value: function deleteFavorite(index) {
-	            var self = this;
-	            (0, _axios2.default)({
-	                method: 'DELETE',
-	                url: '/api/favorites',
-	                data: {
-	                    id: self.state.list[index].id
-	                }
-	            }).then(function (resp) {
-	                console.log('Successful delete');
-	            }).catch(function (err) {
-	                console.log('Error in deleting favorite: ' + err);
-	            });
-	            var copy = this.state.list.slice();
-	            copy.splice(index, 1);
-	            this.setState({ list: copy });
-	        }
-	    }, {
-	        key: 'displayFavorites',
-	        value: function displayFavorites() {
-	            var _this3 = this;
-
-	            return this.state.list.map(function (e, i) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    { className: 'favorite' },
-	                    _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        e.title
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        e.vote_average
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        e.overview
-	                    ),
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'toggleBtn', onClick: _this3.deleteFavorite.bind(_this3, [i]) },
-	                        'Delete Me'
-	                    )
-	                );
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'favoritesPage' },
-	                this.displayFavorites()
-	            );
-	        }
-	    }]);
-
-	    return Favorites;
-	}(_react2.default.Component);
-
-	exports.default = Favorites;
-
-/***/ },
-/* 493 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 494 */,
-/* 495 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = exports.CardExpandable = exports.CardActions = exports.CardText = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = undefined;
 
-	var _Card2 = __webpack_require__(496);
+	var _Card2 = __webpack_require__(492);
 
 	var _Card3 = _interopRequireDefault(_Card2);
 
-	var _CardHeader2 = __webpack_require__(500);
+	var _CardHeader2 = __webpack_require__(496);
 
 	var _CardHeader3 = _interopRequireDefault(_CardHeader2);
 
-	var _CardTitle2 = __webpack_require__(503);
+	var _CardTitle2 = __webpack_require__(499);
 
 	var _CardTitle3 = _interopRequireDefault(_CardTitle2);
 
-	var _CardMedia2 = __webpack_require__(504);
+	var _CardMedia2 = __webpack_require__(500);
 
 	var _CardMedia3 = _interopRequireDefault(_CardMedia2);
 
-	var _CardText2 = __webpack_require__(505);
+	var _CardText2 = __webpack_require__(501);
 
 	var _CardText3 = _interopRequireDefault(_CardText2);
 
-	var _CardActions2 = __webpack_require__(506);
+	var _CardActions2 = __webpack_require__(502);
 
 	var _CardActions3 = _interopRequireDefault(_CardActions2);
 
-	var _CardExpandable2 = __webpack_require__(497);
+	var _CardExpandable2 = __webpack_require__(493);
 
 	var _CardExpandable3 = _interopRequireDefault(_CardExpandable2);
 
@@ -46138,7 +45954,7 @@
 	exports.default = _Card3.default;
 
 /***/ },
-/* 496 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46187,7 +46003,7 @@
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _CardExpandable = __webpack_require__(497);
+	var _CardExpandable = __webpack_require__(493);
 
 	var _CardExpandable2 = _interopRequireDefault(_CardExpandable);
 
@@ -46358,7 +46174,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 497 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46395,11 +46211,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _keyboardArrowUp = __webpack_require__(498);
+	var _keyboardArrowUp = __webpack_require__(494);
 
 	var _keyboardArrowUp2 = _interopRequireDefault(_keyboardArrowUp);
 
-	var _keyboardArrowDown = __webpack_require__(499);
+	var _keyboardArrowDown = __webpack_require__(495);
 
 	var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
 
@@ -46465,7 +46281,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 498 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46502,7 +46318,7 @@
 	exports.default = HardwareKeyboardArrowUp;
 
 /***/ },
-/* 499 */
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46539,7 +46355,7 @@
 	exports.default = HardwareKeyboardArrowDown;
 
 /***/ },
-/* 500 */
+/* 496 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46584,7 +46400,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Avatar = __webpack_require__(501);
+	var _Avatar = __webpack_require__(497);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -46766,7 +46582,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 501 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46776,7 +46592,7 @@
 	});
 	exports.default = undefined;
 
-	var _Avatar = __webpack_require__(502);
+	var _Avatar = __webpack_require__(498);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -46785,7 +46601,7 @@
 	exports.default = _Avatar2.default;
 
 /***/ },
-/* 502 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46957,7 +46773,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 503 */
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47132,7 +46948,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 504 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47343,7 +47159,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 505 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47466,7 +47282,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 506 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47593,13 +47409,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47609,7 +47419,7 @@
 	});
 	exports.default = undefined;
 
-	var _RaisedButton = __webpack_require__(514);
+	var _RaisedButton = __webpack_require__(504);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -47618,7 +47428,7 @@
 	exports.default = _RaisedButton2.default;
 
 /***/ },
-/* 514 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -48097,6 +47907,191 @@
 	} : void 0;
 	exports.default = RaisedButton;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 505 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Favorites = __webpack_require__(506);
+
+	var _Favorites2 = _interopRequireDefault(_Favorites);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FavoritesPage = function (_React$Component) {
+	    _inherits(FavoritesPage, _React$Component);
+
+	    function FavoritesPage() {
+	        _classCallCheck(this, FavoritesPage);
+
+	        return _possibleConstructorReturn(this, (FavoritesPage.__proto__ || Object.getPrototypeOf(FavoritesPage)).apply(this, arguments));
+	    }
+
+	    _createClass(FavoritesPage, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_Favorites2.default, null)
+	            );
+	        }
+	    }]);
+
+	    return FavoritesPage;
+	}(_react2.default.Component);
+
+	exports.default = FavoritesPage;
+
+/***/ },
+/* 506 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(465);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Favorites = function (_React$Component) {
+	    _inherits(Favorites, _React$Component);
+
+	    function Favorites(props) {
+	        _classCallCheck(this, Favorites);
+
+	        var _this = _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).call(this, props));
+
+	        _this.state = {
+	            list: []
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Favorites, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.loadFavorites();
+	        }
+	    }, {
+	        key: 'loadFavorites',
+	        value: function loadFavorites() {
+	            var _this2 = this;
+
+	            _axios2.default.get('/api/favorites').then(function (resp) {
+	                _this2.setState({ list: resp.data });
+	            }).catch(function (err) {
+	                console.log('loadFavorites error: ' + err);
+	            });
+	        }
+	    }, {
+	        key: 'deleteFavorite',
+	        value: function deleteFavorite(index) {
+	            var self = this;
+	            (0, _axios2.default)({
+	                method: 'DELETE',
+	                url: '/api/favorites',
+	                data: {
+	                    id: self.state.list[index].id
+	                }
+	            }).then(function (resp) {
+	                console.log('Successful delete');
+	            }).catch(function (err) {
+	                console.log('Error in deleting favorite: ' + err);
+	            });
+	            var copy = this.state.list.slice();
+	            copy.splice(index, 1);
+	            this.setState({ list: copy });
+	        }
+	    }, {
+	        key: 'displayFavorites',
+	        value: function displayFavorites() {
+	            var _this3 = this;
+
+	            return this.state.list.map(function (e, i) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: 'favorite' },
+	                    _react2.default.createElement('img', { src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        e.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        e.vote_average
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        e.overview
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { className: 'toggleBtn', onClick: _this3.deleteFavorite.bind(_this3, [i]) },
+	                        'Delete Me'
+	                    )
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'favoritesPage' },
+	                this.displayFavorites()
+	            );
+	        }
+	    }]);
+
+	    return Favorites;
+	}(_react2.default.Component);
+
+	exports.default = Favorites;
+
+/***/ },
+/* 507 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
