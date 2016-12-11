@@ -65,9 +65,7 @@ export default class Selector extends React.Component {
     render() {
         return (
             <div id="selectorPage">
-                <div id="selector">
                     <Card>
-                    {console.log(this.state.currMovie)}
                         <CardMedia overlay={<CardTitle title={this.state.currMovie.title} />} >
                         <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
                         </CardMedia>
@@ -79,7 +77,6 @@ export default class Selector extends React.Component {
                         <RaisedButton label="Fav" onClick={this.submitFavorite.bind(this)} />
                         <RaisedButton label="Next" onClick={this.nextMovie.bind(this)} />
                     </Card>
-                </div>
             </div>
             )
         }

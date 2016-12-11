@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
+import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import RaisedButton from 'material-ui/RaisedButton'
+
 export default class Favorites extends React.Component {
 
     constructor(props) {
@@ -46,13 +49,16 @@ export default class Favorites extends React.Component {
 
     displayFavorites() {
         return this.state.list.map((e,i) => (
-            <div className="favorite">
+            <Card>
+                <CardMedia overlay={<CardTitle title={e.title} />} >
                 <img src={'https://image.tmdb.org/t/p/w500' + e.poster_path} />
-                <h2>{e.title}</h2> 
-                <p>{e.vote_average}</p> 
-                <p>{e.overview}</p>
-                <button className="toggleBtn" onClick={this.deleteFavorite.bind(this, [i])}>Delete Me</button>
-            </div>
+                </CardMedia>
+                <CardText>
+                    <p className="movieRating">{e.vote_average}</p> 
+                    <p className="movieSummary">{e.overview}</p>
+                </CardText>
+                <RaisedButton label="Delete Favorite" onClick={this.deleteFavorite.bind(this, [i])} />
+            </Card>
         ))
     }
 
