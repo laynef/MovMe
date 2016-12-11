@@ -1,6 +1,5 @@
 import React, { PropTypes as T } from 'react'
 import { Jumbotron } from 'react-bootstrap'
-import styles from './styles.module.css'
 
 export default class Container extends React.Component {
   render() {
@@ -13,7 +12,7 @@ export default class Container extends React.Component {
 
     return (
       <Jumbotron>
-        <h2 className={styles.mainTitle}>
+        <h2>
           <img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg" />
         </h2>
         {children}

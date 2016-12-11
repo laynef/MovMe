@@ -1,7 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-    entry: "./app/Root.jsx",
+   entry: "./app/Root.jsx",
    output: {
         filename: "public/bundle.js"
     },
@@ -18,6 +18,18 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('css!sass')
+            },
+            { 
+                test: /node_modules[\\\/]auth0-lock[\\\/].*\.js$/, 
+                loaders: [ 'transform-loader/cacheable?brfs', 'transform-loader/cacheable?packageify' ]
+            },
+            { 
+                test: /node_modules[\\\/]auth0-lock[\\\/].*\.ejs$/, 
+                loader: 'transform-loader/cacheable?ejsify'
+            },
+            { 
+                test: /\.json$/, 
+                loader: 'json'
             }
         ]
     },

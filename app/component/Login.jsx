@@ -14,7 +14,7 @@ export class Login extends React.Component {
     return (
       <div className={styles.root}>
         <h2>Login</h2>
-        <ButtonToolbar className={styles.toolbar}>
+        <ButtonToolbar>
           <Button bsStyle="primary" onClick={auth.login.bind(this)}>Login</Button>
         </ButtonToolbar>
       </div>
