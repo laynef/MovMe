@@ -34,13 +34,19 @@
     "auth0-lock": "^10.7.2",
     "axios": "^0.15.3",
     "body-parser": "^1.15.2",
+    "brfs": "^1.4.3",
+    "cors": "^2.8.1",
     "dotenv": "^2.0.0",
+    "ejsify": "^1.0.0",
     "express": "^4.14.0",
+    "i": "^0.3.5",
     "material-ui": "^0.16.5",
     "mongoose": "^4.7.0",
     "morgan": "^1.7.0",
     "mysql": "^2.12.0",
     "nodemon": "^1.11.0",
+    "npm": "^4.0.3",
+    "packageify": "^1.0.0",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "react": "^15.4.1",
@@ -52,6 +58,7 @@
     "redux": "^3.6.0",
     "sequelize": "^3.27.0",
     "sqlite3": "^3.1.8",
-    "tedious": "^1.14.0"
+    "tedious": "^1.14.0",
+    "transform-loader": "^0.2.3"
   }
 }
