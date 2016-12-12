@@ -1,4 +1,3 @@
-@import './menu.scss';
 @import './selector.scss';
 @import './favorites.scss';
 
@@ -10,13 +9,12 @@ html {
   background-size: cover;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+h1 {
+  color: black;
+  text-align: center;
 }
 
-h1 {
-  float: right;
+a {
+  text-decoration: none;
   color: white;
-  text-align: center;
 }
