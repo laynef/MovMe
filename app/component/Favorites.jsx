@@ -6,8 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 const gambler = {
   height: '400px',
-  width: '400px',
-  'background-color': 'white'
+  width: '400px'
 }
 
 export default class Favorites extends React.Component {
