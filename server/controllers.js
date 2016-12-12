@@ -1,5 +1,6 @@
-require('dotenv').config()
+require('dotenv')
 const models = require('./models')
+const axios = require('axios')
 
 module.exports = {
     favorites: {
@@ -15,7 +16,7 @@ module.exports = {
     },
     movies: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=de4f44a3c638131546b994dc9d2e602c&sort_by=popularity.desc')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.api_key +'&sort_by=popularity.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
