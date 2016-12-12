@@ -5,7 +5,7 @@ import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card
 import RaisedButton from 'material-ui/RaisedButton'
 
 const gambler = {
-    'max-width': '22%',
+    'max-width': '30%',
     'margin': '0 auto',
     'text-align': 'center'
 }
