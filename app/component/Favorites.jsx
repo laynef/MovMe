@@ -61,7 +61,7 @@ export default class Favorites extends React.Component {
                 </CardMedia>
                 <CardText>
                     <p className="movieRating">{'Rating: ' + e.vote_average}</p> 
-                    <p className="movieSummary">{'Summary: ' + e.overview}</p>
+                    <p className="movieSummary">{e.overview}</p>
                 </CardText>
                 <RaisedButton label="Delete Favorite" onClick={this.deleteFavorite.bind(this, [i])} />
             </Card>
