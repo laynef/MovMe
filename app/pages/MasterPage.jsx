@@ -31,6 +31,8 @@ export default class MasterPage extends React.Component {
         this.setState({open: !this.state.open})
     }
 
+    
+
     render() {
         return (
             <div>

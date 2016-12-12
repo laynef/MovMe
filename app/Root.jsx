@@ -12,6 +12,7 @@ import FavoritesPage from './pages/FavoritesPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 
 import styles from './sass/index.scss'
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 
 import AuthService from './Auth0Lock.jsx'
 const auth = new AuthService(config.authFirst, config.authSecond)
@@ -28,8 +29,8 @@ ReactDOM.render((
             <Route path="/" component={MasterPage}>
             <IndexRoute component={HomePage}/>
                 <Route path="/selector" component={SelectorPage}/>
-                <Route path="/favorites" component={FavoritesPage}/>
-                <Route path="/login" component={LoginPage}/>
+                <Route path="/favorites" component={FavoritesPage} onEnter={requireAuth} />
+                <Route path="/login" component={LoginPage} auth={auth} />
             </Route>
         </Router>
     </MuiThemeProvider>
