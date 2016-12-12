@@ -4,6 +4,12 @@ import axios from 'axios'
 import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 
+const gambler = {
+  height: '400px',
+  width: '400px',
+  margin: '0 auto'
+}
+
 export default class Favorites extends React.Component {
 
     constructor(props) {
@@ -49,7 +55,7 @@ export default class Favorites extends React.Component {
 
     displayFavorites() {
         return this.state.list.map((e,i) => (
-            <Card>
+            <Card style={gambler}>
                 <CardMedia overlay={<CardTitle title={e.title} />} >
                 <img src={'https://image.tmdb.org/t/p/w500' + e.poster_path} />
                 </CardMedia>

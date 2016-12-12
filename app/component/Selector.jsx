@@ -4,6 +4,12 @@ import axios from 'axios'
 import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 
+const gambler = {
+  height: '400px',
+  width: '400px',
+  margin: '0 auto'
+}
+
 export default class Selector extends React.Component {
 
     constructor(props) {
@@ -64,7 +70,7 @@ export default class Selector extends React.Component {
     render() {
         return (
             <div id="selectorPage">
-                      <Card>
+                    <Card style={gambler}>
                         <CardMedia overlay={<CardTitle title={this.state.currMovie.title} />} >
                         <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
                         </CardMedia>
