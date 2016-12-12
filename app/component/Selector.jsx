@@ -75,8 +75,8 @@ export default class Selector extends React.Component {
                         <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
                         </CardMedia>
                         <CardText>
-                            <p className="movieRating">{this.state.currMovie.vote_average}</p> 
-                            <p className="movieSummary">{this.state.currMovie.overview}</p>
+                            <p className="movieRating">{'Rating: ' + this.state.currMovie.vote_average}</p> 
+                            <p className="movieSummary">{'Summary: ' + this.state.currMovie.overview}</p>
                         </CardText>
                         <RaisedButton label="Prev" onClick={this.lastMovie.bind(this)} />
                         <RaisedButton label="Fav" onClick={this.submitFavorite.bind(this)} />
