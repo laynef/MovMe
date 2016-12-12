@@ -15,8 +15,7 @@ ReactDOM.render((
     <MuiThemeProvider>
         <Router history={browserHistory}>
             <Route path="/" component={MasterPage}>
-            <IndexRoute component={HomePage}/>
-                <Route path="/selector" component={SelectorPage}/>
+            <IndexRoute component={SelectorPage}/>
                 <Route path="/favorites" component={FavoritesPage}/>
             </Route>
         </Router>

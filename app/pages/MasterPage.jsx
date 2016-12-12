@@ -36,8 +36,7 @@ export default class MasterPage extends React.Component {
             <div>
                 <AppBar title='MovMe' style={appBarStyles.div} onClick={this.handleToggle} />
                 <Drawer width={200} containerStyle={drawerStyles['element.style']} open={this.state.open}>
-                    <MenuItem onClick={this.handleToggle} ><Link to='/'>Home</Link></MenuItem>
-                    <MenuItem onClick={this.handleToggle} ><Link to='/selector'>Selector</Link></MenuItem>
+                    <MenuItem onClick={this.handleToggle} ><Link to='/'>New Releases</Link></MenuItem>
                     <MenuItem onClick={this.handleToggle} ><Link to='/favorites'>Favorites</Link></MenuItem>
                 </Drawer>
                 {this.props.children}

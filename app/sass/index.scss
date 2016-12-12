@@ -1,6 +1,11 @@
 @import './selector.scss';
 @import './favorites.scss';
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   color: black;
   text-align: center;
