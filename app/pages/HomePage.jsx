@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Menu from '../component/Menu.jsx'
-
 export default class HomePage extends React.Component {
 
     render() {
