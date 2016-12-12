@@ -5,8 +5,8 @@ import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card
 import RaisedButton from 'material-ui/RaisedButton'
 
 const gambler = {
-    'max-height': '50%'
-} 
+    'max-width': '20%'
+}
 
 export default class Selector extends React.Component {
 

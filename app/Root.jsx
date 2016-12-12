@@ -4,7 +4,6 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import HomePage from './pages/HomePage.jsx'
 import MasterPage from './pages/MasterPage.jsx'
 import SelectorPage from './pages/SelectorPage.jsx'
 import FavoritesPage from './pages/FavoritesPage.jsx'
