@@ -1,44 +1,25 @@
 import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
-
-import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
-
-const appBarStyles = {
-    div: {
-        'background-color': 'rgb(34, 35, 35)'
-    }
-}
-
-const drawerStyles = {
-    'element.style' : {
-        'background-color': 'rgb(41, 40, 40)'
-    }
-}
+import { NavbarHeader, NavbarToggle, NavbarCollapse, NavbarBrand, Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap'
 
 export default class MasterPage extends React.Component {
-
-    constructor (props) {
-        super(props)
-        this.state = {
-            open: false
-        }
-        this.handleToggle = this.handleToggle.bind(this)
-    }
-
-    handleToggle () {
-        this.setState({open: !this.state.open})
-    }
 
     render() {
         return (
             <div>
-                <AppBar title='MovMe' style={appBarStyles.div} onClick={this.handleToggle} />
-                <Drawer width={200} containerStyle={drawerStyles['element.style']} open={this.state.open}>
-                    <MenuItem onClick={this.handleToggle} ><Link to='/'>New Releases</Link></MenuItem>
-                    <MenuItem onClick={this.handleToggle} ><Link to='/favorites'>Favorites</Link></MenuItem>
-                </Drawer>
+                  <Navbar inverse collapseOnSelect>
+                    <Navbar.Header>
+                    <Navbar.Brand>
+                        <Link to="/">MovMe</Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                    <Nav pullRight>
+                        <NavItem eventKey={1}><Link className="topNavLink" to="/favorites">Favorites</Link></NavItem>
+                    </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
                 {this.props.children}
             </div>
             )

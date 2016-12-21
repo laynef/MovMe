@@ -6,12 +6,12 @@ body {
   padding: 0;
 }
 
-h1 {
-  color: black;
-  text-align: center;
+.topNavLink {
+  text-decoration: none;
+  color: #9d9d9d;
 }
 
-a {
+.topNavLink:hover {
+  color: rgba(255,255,255, 1);
   text-decoration: none;
-  color: white;
 }

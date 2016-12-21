@@ -25,8 +25,8 @@ export default class Selector extends React.Component {
         this.getMovieInfo()
     }
 
-    getMovieInfo() {
-        axios.get('/api/movies')
+    getPopMovieInfo() {
+        axios.get('/api/pop')
             .then((resp) => {
                 this.setState({ list: resp.data })
                 this.setState({ currMovie: this.state.list[this.state.movieIndex] })
@@ -70,18 +70,7 @@ export default class Selector extends React.Component {
     render() {
         return (
             <div id="selectorPage">
-                    <Card style={gambler}>
-                        <CardMedia overlay={<CardTitle title={this.state.currMovie.title} />} >
-                        <img src={'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path} />
-                        </CardMedia>
-                        <CardText>
-                            <p className="movieRating">{'Rating: ' + this.state.currMovie.vote_average}</p> 
-                            <p className="movieSummary">{this.state.currMovie.overview}</p>
-                        </CardText>
-                        <RaisedButton label="Prev" onClick={this.lastMovie.bind(this)} />
-                        <RaisedButton label="Fav" onClick={this.submitFavorite.bind(this)} />
-                        <RaisedButton label="Next" onClick={this.nextMovie.bind(this)} />
-                    </Card>
+
             </div>
             )
         }

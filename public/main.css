@@ -1,1 +1,19 @@
-#favoritesPage,#selectorPage{margin:0 auto;text-align:center}body{margin:0;padding:0}h1{color:#000;text-align:center}a{text-decoration:none;color:#fff}
+#selectorPage {
+  margin: 0 auto;
+  text-align: center; }
+
+#favoritesPage {
+  margin: 0 auto;
+  text-align: center; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.topNavLink {
+  text-decoration: none;
+  color: #9d9d9d; }
+
+.topNavLink:hover {
+  color: white;
+  text-decoration: none; }
