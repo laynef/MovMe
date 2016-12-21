@@ -6,8 +6,8 @@ export default class MasterPage extends React.Component {
 
     render() {
         return (
-            <div>
-                  <Navbar inverse collapseOnSelect>
+            <div className="master">
+                  <Navbar fixedTop inverse collapseOnSelect>
                     <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">MovMe</Link>

@@ -1,14 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
-import RaisedButton from 'material-ui/RaisedButton'
-
-const gambler = {
-    'max-width': '30%',
-    'margin': '0 auto',
-    'text-align': 'center'
-}
+import { Button, Carousel, CarouselCaption, CarouselItem } from 'react-bootstrap'
 
 export default class Selector extends React.Component {
 
@@ -16,19 +9,28 @@ export default class Selector extends React.Component {
         super(props)
         this.state = {
             movieIndex: 0,
-            list: [],
+            popList: [],
+            adventureList: [],
+            actionList: [],
+            horrorList: [],
+            comediesList: [],
+            dramaList: [],
+            topRatedList: [],
+            newReleasesList: [],
+            fantasyList: [],
             currMovie: {}
         }
     }
 
     componentWillMount() {
-        this.getMovieInfo()
+        this.gridPicker()
     }
 
-    getPopMovieInfo() {
-        axios.get('/api/pop')
+    getMovieInfo(ep) {
+        let listings = ep + 'List'
+        axios.get('/api/' + ep)
             .then((resp) => {
-                this.setState({ list: resp.data })
+                this.setState({ listings: resp.data })
                 this.setState({ currMovie: this.state.list[this.state.movieIndex] })
             })
             .catch((err) => {
@@ -55,22 +57,57 @@ export default class Selector extends React.Component {
         this.postMovieInfo()
     }
 
-    nextMovie() {
-        if (this.state.movieIndex < 20)
-            this.setState({movieIndex: this.state.movieIndex+1})
-            this.getMovieInfo()
-    }
-
-    lastMovie() {
-        if (this.state.movieIndex > 0)
-            this.setState({movieIndex: this.state.movieIndex-1})
-            this.getMovieInfo()
+    gridPicker() {
+        let options = ["pop", "newReleases", "topRated", "comedies", "action", "adventure", "fanasty", "drama", "horror"]
+        let arr = options.map(e => {
+           setTimeout( this.getMovieInfo(e), 250) // not syncing
+            let listing = e + "List"
+            return (
+                <Carousel>
+                    {this.state.listing.map((ele, idx) => (
+                        <Carousel.Item>
+                            <img width={250} height={250} alt="250x250" src={'https://image.tmdb.org/t/p/w500' + this.state.listing.poster_path[idx]}/>
+                            <Carousel.Caption>
+                                <h3>{this.state.listing.title[idx]}</h3>
+                                <Button bsStyle="primary" onClick={this.postMovieInfo.bind(this)}>Favorite</Button>
+                                <p>{this.state.listing.overview[idx]}</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    ))}
+                </Carousel>
+             )
+        })
     }
 
     render() {
         return (
             <div id="selectorPage">
-
+                {/* Image Div */}
+                  <Carousel>
+                    <Carousel.Item>
+                    <img width={900} height={500} alt="900x500" src="http://i.imgur.com/ncF41VA.jpg"/>
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                    <img width={900} height={500} alt="900x500" src="http://i.imgur.com/DRNFL2C.jpg"/>
+                    <Carousel.Caption>
+                        <h3>Second slide label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                    <img width={900} height={500} alt="900x500" src="http://i.imgur.com/bAsrJzX.jpg"/>
+                    <Carousel.Caption>
+                        <h3>Third slide label</h3>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
+                {/* Grid Picker */}
+                {this.gridPicker()}
             </div>
             )
         }
