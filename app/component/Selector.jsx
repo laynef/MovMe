@@ -134,8 +134,7 @@ export default class Selector extends React.Component {
                   <Grid fluid={true} bsClass="gridMain">
                   {options.map(name => (
                     <Carousel wrap={false} activeIndex={this.state.index[name + 'Index']} direction={this.state.direction[name + 'Direction']} onClick={this.getName.bind(this, [name])} onSelect={this.getAction.bind(this)}>
-                        {
-                            _.chunk(this.state[name + 'List'], 4).map((e) => (
+                        {_.chunk(this.state[name + 'List'], 4).map((e) => (
                                 <Carousel.Item>
                                         {e.map(ele => (
                                             <Col xs={6} md={3}>
@@ -150,8 +149,7 @@ export default class Selector extends React.Component {
                                                 </Col>
                                         ))}                                        
                                     </Carousel.Item>
-                                ))
-                        }
+                                ))}
                         </Carousel>
                     ))}
                     </Grid>
