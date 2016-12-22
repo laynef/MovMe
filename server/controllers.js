@@ -25,9 +25,7 @@ module.exports = {
     },
     newReleases: {
         get: (req, res) => {
-            let date = Date.now();
-            let year = date.getYear();
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&primary_release_year=' + year)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&primary_release_year=2016')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -35,7 +33,7 @@ module.exports = {
     },
     action: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=28')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=28&sort_by=vote_average.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -43,7 +41,7 @@ module.exports = {
     },
     comedies: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=35')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=35&sort_by=vote_average.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -51,7 +49,7 @@ module.exports = {
     },
     horror: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=27')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=27&sort_by=vote_average.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -59,7 +57,7 @@ module.exports = {
     },
     drama: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=18')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=18&sort_by=vote_average.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -75,7 +73,7 @@ module.exports = {
     },
     fantasy: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=14')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=14&sort_by=vote_average.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -83,7 +81,7 @@ module.exports = {
     },
     adventure: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=12')
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=12&sort_by=vote_average.desc')
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
