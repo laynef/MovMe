@@ -4,7 +4,6 @@ import _ from 'lodash'
 
 import { Button, Carousel, CarouselCaption, CarouselItem, Grid, Col, Row, Thumbnail } from 'react-bootstrap'
 
-// const options = ["pop", "newReleases", "topRated", "comedies", "action", "adventure", "fantasy", "drama", "horror"]
 const options = ["comedies", "action", "adventure", "fantasy", "drama", "horror"]
 const arr = [
             "adventureList",
@@ -51,31 +50,12 @@ export default class Selector extends React.Component {
                 actionDirection: null,
                 adventureDirection: null
             },
-            funcs : {
-                comediesHandleSelector: () => {},
-                fantasyHandleSelector: () => {},
-                dramaHandleSelector: () => {},
-                horrorHandleSelector: () => {},
-                actionHandleSelector: () => {},
-                adventureHandleSelector: () => {}
-            },
-            curr : ''
+            curr : '',
+            init: []
         }
     }
 
     componentWillMount() {
-        options.forEach(ele => {
-            let name = ele + 'HandleSelector'
-            let n = {}
-            n[name] = (selectedIndex, e) => {
-                this.state[ele + 'Index'] = selectedIndex    
-                this.state[ele + 'Direction'] = e.direction
-                this.setState(this.state[ele + 'Index']);
-                this.setState(this.state[ele + 'Direction']);
-            }
-            this.state.funcs[name] = n[name].bind(this)
-            this.setState(this.state.funcs)
-        })
         options.forEach(e => {
             this.getMovieInfo(e)
         })
@@ -87,6 +67,9 @@ export default class Selector extends React.Component {
             .then((resp) => {
                 this.state.list[name] = resp.data
                 this.setState(this.state.list)
+                let copy = this.state.init
+                copy.push(resp.data[0])
+                this.setState({init: copy})
             })
             .catch((err) => {
                 console.log(`getMovieInfo error: ${err}`)
@@ -136,18 +119,17 @@ export default class Selector extends React.Component {
 
                 {/* Image Div */}
                   <Carousel>
-                    {imgs.map(e =>
+                    {this.state.init.map(e => (
                         <Carousel.Item>
-                            <img width={900} height={500} alt="900x500" src={e}/>
+                            <img width={900} height={500} alt="900x500" src={'https://image.tmdb.org/t/p/w500' + e.poster_path}/>
                             <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                <h3>{e.title}</h3>
+                                <p>{e.overview}</p>
                             </Carousel.Caption>
                         </Carousel.Item>
-                    )}
+                    ))}
                 </Carousel>
 
-                {console.log(this.state.funcs.actionHandleSelector)}
                 {/* Grid Picker */}
                   <Grid fluid={true} bsClass="gridMain">
                   {options.map(name => (

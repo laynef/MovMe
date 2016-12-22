@@ -45272,7 +45272,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	// const options = ["pop", "newReleases", "topRated", "comedies", "action", "adventure", "fantasy", "drama", "horror"]
 	var options = ["comedies", "action", "adventure", "fantasy", "drama", "horror"];
 	var arr = ["adventureList", "actionList", "horrorList", "comediesList", "dramaList", "fantasyList"];
 
@@ -45312,15 +45311,8 @@
 	                actionDirection: null,
 	                adventureDirection: null
 	            },
-	            funcs: {
-	                comediesHandleSelector: function comediesHandleSelector() {},
-	                fantasyHandleSelector: function fantasyHandleSelector() {},
-	                dramaHandleSelector: function dramaHandleSelector() {},
-	                horrorHandleSelector: function horrorHandleSelector() {},
-	                actionHandleSelector: function actionHandleSelector() {},
-	                adventureHandleSelector: function adventureHandleSelector() {}
-	            },
-	            curr: ''
+	            curr: '',
+	            init: []
 	        };
 	        return _this;
 	    }
@@ -45330,18 +45322,6 @@
 	        value: function componentWillMount() {
 	            var _this2 = this;
 
-	            options.forEach(function (ele) {
-	                var name = ele + 'HandleSelector';
-	                var n = {};
-	                n[name] = function (selectedIndex, e) {
-	                    _this2.state[ele + 'Index'] = selectedIndex;
-	                    _this2.state[ele + 'Direction'] = e.direction;
-	                    _this2.setState(_this2.state[ele + 'Index']);
-	                    _this2.setState(_this2.state[ele + 'Direction']);
-	                };
-	                _this2.state.funcs[name] = n[name].bind(_this2);
-	                _this2.setState(_this2.state.funcs);
-	            });
 	            options.forEach(function (e) {
 	                _this2.getMovieInfo(e);
 	            });
@@ -45355,6 +45335,9 @@
 	            _axios2.default.get('/api/' + ep).then(function (resp) {
 	                _this3.state.list[name] = resp.data;
 	                _this3.setState(_this3.state.list);
+	                var copy = _this3.state.init;
+	                copy.push(resp.data[0]);
+	                _this3.setState({ init: copy });
 	            }).catch(function (err) {
 	                console.log('getMovieInfo error: ' + err);
 	            });
@@ -45410,29 +45393,28 @@
 	                _react2.default.createElement(
 	                    _reactBootstrap.Carousel,
 	                    null,
-	                    imgs.map(function (e) {
+	                    this.state.init.map(function (e) {
 	                        return _react2.default.createElement(
 	                            _reactBootstrap.Carousel.Item,
 	                            null,
-	                            _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: e }),
+	                            _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
 	                            _react2.default.createElement(
 	                                _reactBootstrap.Carousel.Caption,
 	                                null,
 	                                _react2.default.createElement(
 	                                    'h3',
 	                                    null,
-	                                    'First slide label'
+	                                    e.title
 	                                ),
 	                                _react2.default.createElement(
 	                                    'p',
 	                                    null,
-	                                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+	                                    e.overview
 	                                )
 	                            )
 	                        );
 	                    })
 	                ),
-	                console.log(this.state.funcs.actionHandleSelector),
 	                _react2.default.createElement(
 	                    _reactBootstrap.Grid,
 	                    { fluid: true, bsClass: 'gridMain' },
