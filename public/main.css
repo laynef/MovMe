@@ -17,3 +17,10 @@ body {
 .topNavLink:hover {
   color: white;
   text-decoration: none; }
+
+.selectorRow {
+  overflow: hidden; }
+
+.gridMain {
+  margin: 0;
+  padding: 0; }
