@@ -122,7 +122,7 @@ export default class Selector extends React.Component {
                     {this.state.init.filter(e => { _.identity(e) })}
                     {this.state.init.map(e => (
                         <Carousel.Item>
-                            <img width={900} height={500} alt="900x500" src={'https://image.tmdb.org/t/p/w500' + e.poster_path}/>
+                            <img maxHeight={500} alt="900x500" src={'https://image.tmdb.org/t/p/w500' + e.poster_path}/>
                             <Carousel.Caption>
                                 <h3>{e.title}</h3>
                                 <p>{e.overview}</p>
@@ -134,9 +134,11 @@ export default class Selector extends React.Component {
                 {/* Grid Picker */}
                   <Grid fluid={true} bsClass="gridMain">
                   {options.map(name => (
-                    <Carousel wrap={false} activeIndex={this.state.index[name + 'Index']} direction={this.state.direction[name + 'Direction']} onMouseEnter={this.getName.bind(this, [name])} onSelect={this.getAction.bind(this)}>
-                        {_.chunk(this.state[name + 'List'], 4).map((e) => (
+                    <Carousel wrap={false}  activeIndex={this.state.index[name + 'Index']} direction={this.state.direction[name + 'Direction']} onMouseEnter={this.getName.bind(this, [name])} onSelect={this.getAction.bind(this)}>
+                        {_.chunk(_.filter(this.state[name + 'List'], (e) => (
+                            _.identity(e.poster_path))), 4).map((e) => (
                                 <Carousel.Item>
+                                {console.log(e)}
                                         {e.map(ele => (
                                             <Col xs={6} md={3}>
                                                     <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path} alt="242x200">

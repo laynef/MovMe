@@ -45400,7 +45400,7 @@
 	                        return _react2.default.createElement(
 	                            _reactBootstrap.Carousel.Item,
 	                            null,
-	                            _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
+	                            _react2.default.createElement('img', { maxHeight: 500, alt: '900x500', src: 'https://image.tmdb.org/t/p/w500' + e.poster_path }),
 	                            _react2.default.createElement(
 	                                _reactBootstrap.Carousel.Caption,
 	                                null,
@@ -45425,10 +45425,13 @@
 	                        return _react2.default.createElement(
 	                            _reactBootstrap.Carousel,
 	                            { wrap: false, activeIndex: _this4.state.index[name + 'Index'], direction: _this4.state.direction[name + 'Direction'], onMouseEnter: _this4.getName.bind(_this4, [name]), onSelect: _this4.getAction.bind(_this4) },
-	                            _lodash2.default.chunk(_this4.state[name + 'List'], 4).map(function (e) {
+	                            _lodash2.default.chunk(_lodash2.default.filter(_this4.state[name + 'List'], function (e) {
+	                                return _lodash2.default.identity(e.poster_path);
+	                            }), 4).map(function (e) {
 	                                return _react2.default.createElement(
 	                                    _reactBootstrap.Carousel.Item,
 	                                    null,
+	                                    console.log(e),
 	                                    e.map(function (ele) {
 	                                        return _react2.default.createElement(
 	                                            _reactBootstrap.Col,
