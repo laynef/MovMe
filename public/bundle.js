@@ -64,15 +64,15 @@
 
 	var _SelectorPage2 = _interopRequireDefault(_SelectorPage);
 
-	var _FavoritesPage = __webpack_require__(513);
+	var _FavoritesPage = __webpack_require__(515);
 
 	var _FavoritesPage2 = _interopRequireDefault(_FavoritesPage);
 
-	var _DetailsPage = __webpack_require__(515);
+	var _DetailsPage = __webpack_require__(517);
 
 	var _DetailsPage2 = _interopRequireDefault(_DetailsPage);
 
-	var _index = __webpack_require__(517);
+	var _index = __webpack_require__(519);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -45271,7 +45271,7 @@
 
 	var _reactBootstrap = __webpack_require__(234);
 
-	var _reactFontawesome = __webpack_require__(518);
+	var _reactFontawesome = __webpack_require__(513);
 
 	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
@@ -45394,11 +45394,6 @@
 	            this.setState(this.state.id);
 	        }
 	    }, {
-	        key: 'submitFavorite',
-	        value: function submitFavorite() {
-	            this.postMovieInfo();
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this4 = this;
@@ -45481,7 +45476,7 @@
 	                                                    _reactBootstrap.Button,
 	                                                    { id: ele.title, bsClass: 'favButtons', onClick: _this4.postMovieInfo.bind(_this4, [ele]) },
 	                                                    _this4.state.id[ele.title] ? _react2.default.createElement(_reactFontawesome2.default, {
-	                                                        name: 'heartbeat',
+	                                                        name: 'heart',
 	                                                        size: '2x' }) : _react2.default.createElement(_reactFontawesome2.default, {
 	                                                        name: 'heart-o',
 	                                                        size: '2x'
@@ -64088,6 +64083,148 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _screenReaderStyles = __webpack_require__(514);
+
+	var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	/**
+	 * A React component for the font-awesome icon library.
+	 *
+	 *
+	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
+	 * @param {Boolean} [border=false] Whether or not to show a border radius
+	 * @param {String} [className] An extra set of CSS classes to add to the component
+	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
+	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
+	 * @param {String} [flip=false] Flip the icon's orientation.
+	 * @param {Boolean} [inverse=false]Inverse the icon's color
+	 * @param {String} name Name of the icon to use
+	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
+	 * @param {Number} [rotate] The degress to rotate the icon by
+	 * @param {String} [size] The icon scaling size
+	 * @param {Boolean} [spin=false] Spin the icon
+	 * @param {String} [stack] Stack an icon on top of another
+	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+	 * @module FontAwesome
+	 * @type {ReactClass}
+	 */
+	exports.default = _react2.default.createClass({
+
+	  displayName: 'FontAwesome',
+
+	  propTypes: {
+	    ariaLabel: _react2.default.PropTypes.string,
+	    border: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    cssModule: _react2.default.PropTypes.object,
+	    fixedWidth: _react2.default.PropTypes.bool,
+	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
+	    inverse: _react2.default.PropTypes.bool,
+	    name: _react2.default.PropTypes.string.isRequired,
+	    pulse: _react2.default.PropTypes.bool,
+	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
+	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
+	    spin: _react2.default.PropTypes.bool,
+	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
+	    tag: _react2.default.PropTypes.string
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var border = _props.border;
+	    var cssModule = _props.cssModule;
+	    var className = _props.className;
+	    var fixedWidth = _props.fixedWidth;
+	    var flip = _props.flip;
+	    var inverse = _props.inverse;
+	    var name = _props.name;
+	    var pulse = _props.pulse;
+	    var rotate = _props.rotate;
+	    var size = _props.size;
+	    var spin = _props.spin;
+	    var stack = _props.stack;
+	    var _props$tag = _props.tag;
+	    var tag = _props$tag === undefined ? 'span' : _props$tag;
+	    var ariaLabel = _props.ariaLabel;
+
+	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
+
+	    var classNames = [];
+
+	    if (cssModule) {
+	      classNames.push(cssModule['fa']);
+	      classNames.push(cssModule['fa-' + name]);
+	      size && classNames.push(cssModule['fa-' + size]);
+	      spin && classNames.push(cssModule['fa-spin']);
+	      pulse && classNames.push(cssModule['fa-pulse']);
+	      border && classNames.push(cssModule['fa-border']);
+	      fixedWidth && classNames.push(cssModule['fa-fw']);
+	      inverse && classNames.push(cssModule['fa-inverse']);
+	      flip && classNames.push(cssModule['fa-flip-' + flip]);
+	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
+	      stack && classNames.push(cssModule['fa-stack-' + stack]);
+	    } else {
+	      classNames.push('fa');
+	      classNames.push('fa-' + name);
+	      size && classNames.push('fa-' + size);
+	      spin && classNames.push('fa-spin');
+	      pulse && classNames.push('fa-pulse');
+	      border && classNames.push('fa-border');
+	      fixedWidth && classNames.push('fa-fw');
+	      inverse && classNames.push('fa-inverse');
+	      flip && classNames.push('fa-flip-' + flip);
+	      rotate && classNames.push('fa-rotate-' + rotate);
+	      stack && classNames.push('fa-stack-' + stack);
+	    }
+
+	    // Add any custom class names at the end.
+	    className && classNames.push(className);
+	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 514 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  position: 'absolute',
+	  width: '1px',
+	  height: '1px',
+	  padding: '0px',
+	  margin: '-1px',
+	  overflow: 'hidden',
+	  clip: 'rect(0px, 0px, 0px, 0px)',
+	  border: '0px'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 515 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
@@ -64097,7 +64234,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Favorites = __webpack_require__(514);
+	var _Favorites = __webpack_require__(516);
 
 	var _Favorites2 = _interopRequireDefault(_Favorites);
 
@@ -64135,7 +64272,7 @@
 	exports.default = FavoritesPage;
 
 /***/ },
-/* 514 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64186,11 +64323,6 @@
 	            this.loadFavorites();
 	        }
 	    }, {
-	        key: 'componentWillUpdate',
-	        value: function componentWillUpdate() {
-	            this.loadFavorites();
-	        }
-	    }, {
 	        key: 'loadFavorites',
 	        value: function loadFavorites() {
 	            var _this2 = this;
@@ -64218,124 +64350,64 @@
 	            var copy = this.state.list.slice();
 	            copy.splice(index, 1);
 	            this.setState({ list: copy });
-	        }
-	    }, {
-	        key: 'displayFavorites',
-	        value: function displayFavorites() {
-	            var _this3 = this;
-
-	            return _react2.default.createElement(
-	                _reactBootstrap.Grid,
-	                { fluid: true },
-	                _.chunk(this.state.list, 3).map(function (e) {
-	                    return _react2.default.createElement(
-	                        _reactBootstrap.Row,
-	                        null,
-	                        e.map(function (ele) {
-	                            return _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { xs: 6, md: 4 },
-	                                _react2.default.createElement(
-	                                    _reactRouter.Link,
-	                                    { to: '/details' },
-	                                    _react2.default.createElement(
-	                                        _reactBootstrap.Thumbnail,
-	                                        { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path },
-	                                        _react2.default.createElement(
-	                                            'h3',
-	                                            null,
-	                                            ele.title
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'p',
-	                                            null,
-	                                            ele.overview
-	                                        )
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'p',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactBootstrap.Button,
-	                                        { onClick: _this3.deleteFavorite.bind(_this3, ele.title) },
-	                                        'Delete Favorite'
-	                                    )
-	                                )
-	                            );
-	                        })
-	                    );
-	                })
-	            );
+	            this.loadFavorites();
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this3 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'favoritesPage' },
 	                _react2.default.createElement(
-	                    _reactBootstrap.Carousel,
+	                    'h1',
 	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Carousel.Item,
-	                        null,
-	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/ncF41VA.jpg' }),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Carousel.Caption,
-	                            null,
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'First slide label'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                null,
-	                                'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Carousel.Item,
-	                        null,
-	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/DRNFL2C.jpg' }),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Carousel.Caption,
-	                            null,
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'Second slide label'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                null,
-	                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Carousel.Item,
-	                        null,
-	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/bAsrJzX.jpg' }),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Carousel.Caption,
-	                            null,
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'Third slide label'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                null,
-	                                'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-	                            )
-	                        )
-	                    )
+	                    'Favorites'
 	                ),
-	                this.displayFavorites()
+	                _react2.default.createElement(
+	                    _reactBootstrap.Grid,
+	                    { fluid: true },
+	                    _.chunk(this.state.list, 3).map(function (e) {
+	                        return _react2.default.createElement(
+	                            _reactBootstrap.Row,
+	                            null,
+	                            e.map(function (ele) {
+	                                return _react2.default.createElement(
+	                                    _reactBootstrap.Col,
+	                                    { xs: 6, md: 4 },
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/details' },
+	                                        _react2.default.createElement(
+	                                            _reactBootstrap.Thumbnail,
+	                                            { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path },
+	                                            _react2.default.createElement(
+	                                                'h3',
+	                                                null,
+	                                                ele.title
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                ele.overview
+	                                            )
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactBootstrap.Button,
+	                                            { onClick: _this3.deleteFavorite.bind(_this3, ele.title) },
+	                                            'Delete Favorite'
+	                                        )
+	                                    )
+	                                );
+	                            })
+	                        );
+	                    })
+	                )
 	            );
 	        }
 	    }]);
@@ -64346,7 +64418,7 @@
 	exports.default = Favorites;
 
 /***/ },
-/* 515 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64361,7 +64433,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Details = __webpack_require__(516);
+	var _Details = __webpack_require__(518);
 
 	var _Details2 = _interopRequireDefault(_Details);
 
@@ -64399,7 +64471,7 @@
 	exports.default = DetailsPage;
 
 /***/ },
-/* 516 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64514,152 +64586,10 @@
 	exports.default = Details;
 
 /***/ },
-/* 517 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 518 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _screenReaderStyles = __webpack_require__(519);
-
-	var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	/**
-	 * A React component for the font-awesome icon library.
-	 *
-	 *
-	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
-	 * @param {Boolean} [border=false] Whether or not to show a border radius
-	 * @param {String} [className] An extra set of CSS classes to add to the component
-	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
-	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
-	 * @param {String} [flip=false] Flip the icon's orientation.
-	 * @param {Boolean} [inverse=false]Inverse the icon's color
-	 * @param {String} name Name of the icon to use
-	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
-	 * @param {Number} [rotate] The degress to rotate the icon by
-	 * @param {String} [size] The icon scaling size
-	 * @param {Boolean} [spin=false] Spin the icon
-	 * @param {String} [stack] Stack an icon on top of another
-	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
-	 * @module FontAwesome
-	 * @type {ReactClass}
-	 */
-	exports.default = _react2.default.createClass({
-
-	  displayName: 'FontAwesome',
-
-	  propTypes: {
-	    ariaLabel: _react2.default.PropTypes.string,
-	    border: _react2.default.PropTypes.bool,
-	    className: _react2.default.PropTypes.string,
-	    cssModule: _react2.default.PropTypes.object,
-	    fixedWidth: _react2.default.PropTypes.bool,
-	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
-	    inverse: _react2.default.PropTypes.bool,
-	    name: _react2.default.PropTypes.string.isRequired,
-	    pulse: _react2.default.PropTypes.bool,
-	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
-	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
-	    spin: _react2.default.PropTypes.bool,
-	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
-	    tag: _react2.default.PropTypes.string
-	  },
-
-	  render: function render() {
-	    var _props = this.props;
-	    var border = _props.border;
-	    var cssModule = _props.cssModule;
-	    var className = _props.className;
-	    var fixedWidth = _props.fixedWidth;
-	    var flip = _props.flip;
-	    var inverse = _props.inverse;
-	    var name = _props.name;
-	    var pulse = _props.pulse;
-	    var rotate = _props.rotate;
-	    var size = _props.size;
-	    var spin = _props.spin;
-	    var stack = _props.stack;
-	    var _props$tag = _props.tag;
-	    var tag = _props$tag === undefined ? 'span' : _props$tag;
-	    var ariaLabel = _props.ariaLabel;
-
-	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
-
-	    var classNames = [];
-
-	    if (cssModule) {
-	      classNames.push(cssModule['fa']);
-	      classNames.push(cssModule['fa-' + name]);
-	      size && classNames.push(cssModule['fa-' + size]);
-	      spin && classNames.push(cssModule['fa-spin']);
-	      pulse && classNames.push(cssModule['fa-pulse']);
-	      border && classNames.push(cssModule['fa-border']);
-	      fixedWidth && classNames.push(cssModule['fa-fw']);
-	      inverse && classNames.push(cssModule['fa-inverse']);
-	      flip && classNames.push(cssModule['fa-flip-' + flip]);
-	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
-	      stack && classNames.push(cssModule['fa-stack-' + stack]);
-	    } else {
-	      classNames.push('fa');
-	      classNames.push('fa-' + name);
-	      size && classNames.push('fa-' + size);
-	      spin && classNames.push('fa-spin');
-	      pulse && classNames.push('fa-pulse');
-	      border && classNames.push('fa-border');
-	      fixedWidth && classNames.push('fa-fw');
-	      inverse && classNames.push('fa-inverse');
-	      flip && classNames.push('fa-flip-' + flip);
-	      rotate && classNames.push('fa-rotate-' + rotate);
-	      stack && classNames.push('fa-stack-' + stack);
-	    }
-
-	    // Add any custom class names at the end.
-	    className && classNames.push(className);
-	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);
-	  }
-	});
-	module.exports = exports['default'];
-
-/***/ },
 /* 519 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  position: 'absolute',
-	  width: '1px',
-	  height: '1px',
-	  padding: '0px',
-	  margin: '-1px',
-	  overflow: 'hidden',
-	  clip: 'rect(0px, 0px, 0px, 0px)',
-	  border: '0px'
-	};
-	module.exports = exports['default'];
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

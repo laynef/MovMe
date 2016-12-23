@@ -15,10 +15,7 @@ export default class Favorites extends React.Component {
 
     componentWillMount() {
         this.loadFavorites()
-    }   
-    componentWillUpdate() {
-        this.loadFavorites()
-    }   
+    }
 
     loadFavorites() {
         axios.get('/api/favorites')
@@ -47,60 +44,33 @@ export default class Favorites extends React.Component {
         let copy = this.state.list.slice()
         copy.splice(index, 1)
         this.setState({list: copy})
-    }
-
-    displayFavorites() {
-        return (
-            <Grid fluid={true}>
-                {_.chunk(this.state.list, 3).map(e => (
-                    <Row>
-                    {e.map(ele => (
-                        <Col xs={6} md={4}>
-                        <Link to="/details">
-                            <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
-                                <h3>{ele.title}</h3>
-                                <p>{ele.overview}</p>
-                            </Thumbnail>
-                            </Link>
-                            <p>
-                                <Button onClick={this.deleteFavorite.bind(this, ele.title)}>Delete Favorite</Button>
-                            </p>
-                        </Col>
-                        ))}
-                    </Row>
-                ))}
-            </Grid>
-        )
+        this.loadFavorites()
     }
 
     render() {
         return (
             <div id="favoritesPage">
-                    <Carousel>
-                        <Carousel.Item>
-                        <img width={900} height={500} alt="900x500" src="http://i.imgur.com/ncF41VA.jpg"/>
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                        <img width={900} height={500} alt="900x500" src="http://i.imgur.com/DRNFL2C.jpg"/>
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                        <img width={900} height={500} alt="900x500" src="http://i.imgur.com/bAsrJzX.jpg"/>
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                        </Carousel.Caption>
-                        </Carousel.Item>
-                    </Carousel>
-
-                    {this.displayFavorites()}
+                    <h1>Favorites</h1>
+                    
+                    <Grid fluid={true}>
+                        {_.chunk(this.state.list, 3).map(e => (
+                            <Row>
+                            {e.map(ele => (
+                                <Col xs={6} md={4}>
+                                <Link to="/details">
+                                    <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
+                                        <h3>{ele.title}</h3>
+                                        <p>{ele.overview}</p>
+                                    </Thumbnail>
+                                    </Link>
+                                    <p>
+                                        <Button onClick={this.deleteFavorite.bind(this, ele.title)}>Delete Favorite</Button>
+                                    </p>
+                                </Col>
+                                ))}
+                            </Row>
+                        ))}
+                    </Grid>
             </div>
             )
         }

@@ -119,10 +119,6 @@ export default class Selector extends React.Component {
             this.setState(this.state.id)
     }
 
-    submitFavorite() {
-        this.postMovieInfo()
-    }
-
     render() {
         return (
             <div id="selectorPage">
@@ -162,7 +158,7 @@ export default class Selector extends React.Component {
                                                             <Button id={ele.title} bsClass="favButtons" onClick={this.postMovieInfo.bind(this, [ele])}>
                                                             {this.state.id[ele.title] ?
                                                             (<FontAwesome
-                                                                name='heartbeat'
+                                                                name='heart'
                                                                 size='2x' />)
                                                             : (<FontAwesome
                                                                 name='heart-o'
