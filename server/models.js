@@ -22,7 +22,7 @@ module.exports = {
         delete: (res, data) => {
             Fav.destroy({
                     where: {
-                        id: data.id
+                        title: data.title
                     }
                 })
                 .then((resp) => {

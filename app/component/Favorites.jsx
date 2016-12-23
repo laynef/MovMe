@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Router, Route, Link, browserHistory } from 'react-router'
 
 import { Button, Carousel, CarouselCaption, CarouselItem, Grid, Col, Row, Thumbnail } from 'react-bootstrap'
 
@@ -13,6 +14,9 @@ export default class Favorites extends React.Component {
     }
 
     componentWillMount() {
+        this.loadFavorites()
+    }   
+    componentWillUpdate() {
         this.loadFavorites()
     }   
 
@@ -31,7 +35,7 @@ export default class Favorites extends React.Component {
                 method: 'DELETE',
                 url: '/api/favorites',
                 data: {
-                    id: index
+                    title: index
                 }
             })
             .then((resp) => {
@@ -52,13 +56,15 @@ export default class Favorites extends React.Component {
                     <Row>
                     {e.map(ele => (
                         <Col xs={6} md={4}>
+                        <Link to="/details">
                             <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
                                 <h3>{ele.title}</h3>
                                 <p>{ele.overview}</p>
-                                <p>
-                                <Button bsStyle="default" onClick={this.deleteFavorite.bind(this, ele.id)}>Delete Favorite</Button>
-                                </p>
                             </Thumbnail>
+                            </Link>
+                            <p>
+                                <Button onClick={this.deleteFavorite.bind(this, ele.title)}>Delete Favorite</Button>
+                            </p>
                         </Col>
                         ))}
                     </Row>

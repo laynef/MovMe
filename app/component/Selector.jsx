@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { Router, Route, Link, browserHistory } from 'react-router'
 
 import { Button, Carousel, CarouselCaption, CarouselItem, Grid, Col, Row, Thumbnail } from 'react-bootstrap'
+import  FontAwesome from 'react-fontawesome'
 
 const options = [
             "comedies", 
@@ -54,7 +55,8 @@ export default class Selector extends React.Component {
                 adventureDirection: null
             },
             curr : '',
-            init: []
+            init: [],
+            id : {}
         }
     }
 
@@ -113,6 +115,8 @@ export default class Selector extends React.Component {
             .catch((err) => {
                 console.log(`postMovieInfo error: ${err}`)
             })
+            this.state.id[ph.title] = true
+            this.setState(this.state.id)
     }
 
     submitFavorite() {
@@ -128,14 +132,13 @@ export default class Selector extends React.Component {
                     {this.state.init.filter(e => { _.identity(e) })}
                     {this.state.init.map(e => (
                         <Carousel.Item>
+                         <Link onClick={this.currMovie.bind(this, [e])} to="/details">
                             <img maxHeight={500} alt="900x500" src={'https://image.tmdb.org/t/p/w500' + e.poster_path}/>
                             <Carousel.Caption>
                                 <h3>{e.title}</h3>
                                 <p>{e.overview}</p>
-                                <Button onClick={this.currMovie.bind(this, [e])}>
-                                    <Link  to="/details">To Detail</Link>
-                                </Button>
                             </Carousel.Caption>
+                            </Link>
                         </Carousel.Item>
                     ))}
                 </Carousel>
@@ -147,18 +150,26 @@ export default class Selector extends React.Component {
                         {_.chunk(_.filter(this.state[name + 'List'], (e) => (
                             _.identity(e.poster_path))), 4).map((e) => (
                                 <Carousel.Item>
-                                        {e.map(ele => (
+                                        {e.map((ele) => (
                                             <Col xs={6} md={3}>
-                                                    <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
-                                                    <Button value={ele} onClick={this.currMovie.bind(this, [ele])}>
-                                    <Link  to="/details">To Detail</Link>
-                                </Button>
+                                            <Link onClick={this.currMovie.bind(this, [ele])} to="/details">
+                                                    <Thumbnail bsClass="thumbnail" src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
                                                         <h3>{ele.title}</h3>
                                                         <h5>Rating: {ele.vote_average}</h5>
-                                                        <p>
-                                                            <Button bsStyle="default" onClick={this.postMovieInfo.bind(this, [ele])}>Favorite</Button>
-                                                        </p>
                                                     </Thumbnail>
+                                                    </Link>
+                                                        <p>
+                                                            <Button id={ele.title} bsClass="favButtons" onClick={this.postMovieInfo.bind(this, [ele])}>
+                                                            {this.state.id[ele.title] ?
+                                                            (<FontAwesome
+                                                                name='heartbeat'
+                                                                size='2x' />)
+                                                            : (<FontAwesome
+                                                                name='heart-o'
+                                                                size='2x'
+                                                            />) }
+                                                            </Button>
+                                                        </p>
                                                 </Col>
                                         ))}                                        
                                     </Carousel.Item>

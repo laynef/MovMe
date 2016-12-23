@@ -18,7 +18,6 @@ export default class Details extends React.Component {
     }
 
     postMovieInfo() {
-        console.log(this.state.currMovie)
         axios.post('/api/favorites', {
                 poster_path: this.state.currMovie.poster_path,
                 title: this.state.currMovie.title,
