@@ -16,10 +16,6 @@ export default class Favorites extends React.Component {
         this.loadFavorites()
     }   
 
-    componentWillUpdate() {
-        this.loadFavorites()
-    }    
-
     loadFavorites() {
         axios.get('/api/favorites')
             .then((resp) => {
