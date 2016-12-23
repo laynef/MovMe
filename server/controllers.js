@@ -15,25 +15,10 @@ module.exports = {
             models.favorites.delete(res, req.body)
         }
     },
-    pop: {
-        get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&sort_by=popularity.desc')
-                .then(resp => { 
-                    res.status(200).send(resp.data.results) })
-                .catch(err => {})
-        }
-    },
-    newReleases: {
-        get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&primary_release_year=2016')
-                .then(resp => { 
-                    res.status(200).send(resp.data.results) })
-                .catch(err => {})
-        }
-    },
     action: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=28&sort_by=vote_average.desc')
+            let pageNumber = Math.floor((Math.random() * 10)  + 1)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=28&sort_by=popularity.desc&page=' + pageNumber)
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -41,7 +26,8 @@ module.exports = {
     },
     comedies: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=35&sort_by=vote_average.desc')
+            let pageNumber = Math.floor((Math.random() * 10)  + 1)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=35&sort_by=popularity.desc&page=' + pageNumber)
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -49,7 +35,8 @@ module.exports = {
     },
     horror: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=27&sort_by=vote_average.desc')
+            let pageNumber = Math.floor((Math.random() * 10)  + 1)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=27&sort_by=popularity.desc&page=' + pageNumber)
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -57,15 +44,8 @@ module.exports = {
     },
     drama: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=18&sort_by=vote_average.desc')
-                .then(resp => { 
-                    res.status(200).send(resp.data.results) })
-                .catch(err => {})
-        }
-    },
-    topRated: {
-        get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&sort_by=vote_average.desc')
+            let pageNumber = Math.floor((Math.random() * 10)  + 1)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=18&sort_by=popularity.desc&page=' + pageNumber)
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -73,7 +53,8 @@ module.exports = {
     },
     fantasy: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=14&sort_by=vote_average.desc')
+            let pageNumber = Math.floor((Math.random() * 10)  + 1)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=14&sort_by=popularity.desc&page=' + pageNumber)
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})
@@ -81,7 +62,8 @@ module.exports = {
     },
     adventure: {
         get: (req, res) => {
-            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=12&sort_by=vote_average.desc')
+            let pageNumber = Math.floor((Math.random() * 10)  + 1)
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + config.api_key +'&with_genres=12&sort_by=popularity.desc&page=' + pageNumber)
                 .then(resp => { 
                     res.status(200).send(resp.data.results) })
                 .catch(err => {})

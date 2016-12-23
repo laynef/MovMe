@@ -45332,11 +45332,12 @@
 	            var _this3 = this;
 
 	            var name = ep + 'List';
+	            var randomNumber = Math.floor(Math.random() * 20 + 1);
 	            _axios2.default.get('/api/' + ep).then(function (resp) {
 	                _this3.state.list[name] = resp.data;
 	                _this3.setState(_this3.state.list);
 	                var copy = _this3.state.init;
-	                copy.push(resp.data[0]);
+	                copy.push(resp.data[randomNumber]);
 	                _this3.setState({ init: copy });
 	            }).catch(function (err) {
 	                console.log('getMovieInfo error: ' + err);
@@ -45431,7 +45432,6 @@
 	                                return _react2.default.createElement(
 	                                    _reactBootstrap.Carousel.Item,
 	                                    null,
-	                                    console.log(e),
 	                                    e.map(function (ele) {
 	                                        return _react2.default.createElement(
 	                                            _reactBootstrap.Col,

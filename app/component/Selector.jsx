@@ -63,12 +63,13 @@ export default class Selector extends React.Component {
 
     getMovieInfo(ep) {
         let name = ep + 'List'
+        let randomNumber = Math.floor((Math.random() * 20 )+ 1) 
         axios.get('/api/' + ep)
             .then((resp) => {
                 this.state.list[name] = resp.data
                 this.setState(this.state.list)
                 let copy = this.state.init
-                copy.push(resp.data[0])
+                copy.push(resp.data[randomNumber])
                 this.setState({init: copy})
             })
             .catch((err) => {
@@ -138,7 +139,6 @@ export default class Selector extends React.Component {
                         {_.chunk(_.filter(this.state[name + 'List'], (e) => (
                             _.identity(e.poster_path))), 4).map((e) => (
                                 <Carousel.Item>
-                                {console.log(e)}
                                         {e.map(ele => (
                                             <Col xs={6} md={3}>
                                                     <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path} alt="242x200">
