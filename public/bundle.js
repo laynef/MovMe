@@ -45357,13 +45357,6 @@
 	            window.localStorage.setItem('currentMovie', JSON.stringify(ph));
 	        }
 	    }, {
-	        key: 'getCurrMovie',
-	        value: function getCurrMovie(e) {
-	            this.setState({ currMovie: e.target.value });
-	            this.postMovieInfo();
-	            window.localStorage.setItem(['currentMovie'], JSON.stringify(e.target.value));
-	        }
-	    }, {
 	        key: 'getName',
 	        value: function getName(e) {
 	            this.setState({ curr: e });
@@ -45380,12 +45373,13 @@
 	        }
 	    }, {
 	        key: 'postMovieInfo',
-	        value: function postMovieInfo() {
+	        value: function postMovieInfo(e) {
+	            var ph = e[0];
 	            _axios2.default.post('/api/favorites', {
-	                poster_path: this.state.currMovie.poster_path,
-	                title: this.state.currMovie.title,
-	                overview: this.state.currMovie.overview,
-	                vote_average: JSON.stringify(this.state.currMovie.vote_average)
+	                poster_path: ph.poster_path,
+	                title: ph.title,
+	                overview: ph.overview,
+	                vote_average: JSON.stringify(ph.vote_average)
 	            }).then(function (resp) {
 	                console.log('postMovieInfo successful');
 	            }).catch(function (err) {
@@ -45487,7 +45481,7 @@
 	                                                    null,
 	                                                    _react2.default.createElement(
 	                                                        _reactBootstrap.Button,
-	                                                        { bsStyle: 'default', onClick: _this4.getCurrMovie.bind(_this4) },
+	                                                        { bsStyle: 'default', onClick: _this4.postMovieInfo.bind(_this4, [ele]) },
 	                                                        'Favorite'
 	                                                    )
 	                                                )
@@ -64188,6 +64182,11 @@
 	            this.loadFavorites();
 	        }
 	    }, {
+	        key: 'componentWillUpdate',
+	        value: function componentWillUpdate() {
+	            this.loadFavorites();
+	        }
+	    }, {
 	        key: 'loadFavorites',
 	        value: function loadFavorites() {
 	            var _this2 = this;
@@ -64201,12 +64200,11 @@
 	    }, {
 	        key: 'deleteFavorite',
 	        value: function deleteFavorite(index) {
-	            var self = this;
 	            (0, _axios2.default)({
 	                method: 'DELETE',
 	                url: '/api/favorites',
 	                data: {
-	                    id: self.state.list[index].id
+	                    id: index
 	                }
 	            }).then(function (resp) {
 	                console.log('Successful delete');
@@ -64222,41 +64220,45 @@
 	        value: function displayFavorites() {
 	            var _this3 = this;
 
-	            return this.state.list.map(function (ele, i) {
-	                return _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6, md: 3 },
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Thumbnail,
-	                        { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path, alt: '242x200' },
-	                        _react2.default.createElement(
-	                            'h3',
-	                            null,
-	                            ele.title
-	                        ),
-	                        _react2.default.createElement(
-	                            'h5',
-	                            null,
-	                            'Rating: ',
-	                            ele.vote_average
-	                        ),
-	                        _react2.default.createElement(
-	                            'p',
-	                            null,
-	                            ele.overview
-	                        ),
-	                        _react2.default.createElement(
-	                            'p',
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Button,
-	                                { bsStyle: 'default', onClick: _this3.postMovieInfo.bind(_this3) },
-	                                'Favorite'
-	                            )
-	                        )
-	                    )
-	                );
-	            });
+	            return _react2.default.createElement(
+	                _reactBootstrap.Grid,
+	                { fluid: true },
+	                _.chunk(this.state.list, 3).map(function (e) {
+	                    return _react2.default.createElement(
+	                        _reactBootstrap.Row,
+	                        null,
+	                        e.map(function (ele) {
+	                            return _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { xs: 6, md: 4 },
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.Thumbnail,
+	                                    { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path },
+	                                    _react2.default.createElement(
+	                                        'h3',
+	                                        null,
+	                                        ele.title
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        ele.overview
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactBootstrap.Button,
+	                                            { bsStyle: 'default', onClick: _this3.deleteFavorite.bind(_this3, ele.id) },
+	                                            'Delete Favorite'
+	                                        )
+	                                    )
+	                                )
+	                            );
+	                        })
+	                    );
+	                })
+	            );
 	        }
 	    }, {
 	        key: 'render',
@@ -64325,15 +64327,7 @@
 	                        )
 	                    )
 	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Grid,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Row,
-	                        null,
-	                        this.displayFavorites()
-	                    )
-	                )
+	                this.displayFavorites()
 	            );
 	        }
 	    }]);
@@ -64418,6 +64412,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _axios = __webpack_require__(486);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	var _reactBootstrap = __webpack_require__(234);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -64450,9 +64448,23 @@
 	            this.setState({ currMovie: realObject });
 	        }
 	    }, {
+	        key: 'postMovieInfo',
+	        value: function postMovieInfo() {
+	            console.log(this.state.currMovie);
+	            _axios2.default.post('/api/favorites', {
+	                poster_path: this.state.currMovie.poster_path,
+	                title: this.state.currMovie.title,
+	                overview: this.state.currMovie.overview,
+	                vote_average: JSON.stringify(this.state.currMovie.vote_average)
+	            }).then(function (resp) {
+	                console.log('postMovieInfo successful');
+	            }).catch(function (err) {
+	                console.log('postMovieInfo error: ' + err);
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(this.state.currMovie);
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -64483,7 +64495,7 @@
 	                                    null,
 	                                    _react2.default.createElement(
 	                                        _reactBootstrap.Button,
-	                                        { bsStyle: 'default', block: true },
+	                                        { bsStyle: 'default', onClick: this.postMovieInfo.bind(this) },
 	                                        'Favorite'
 	                                    )
 	                                )

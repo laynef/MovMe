@@ -14,6 +14,10 @@ export default class Favorites extends React.Component {
 
     componentWillMount() {
         this.loadFavorites()
+    }   
+
+    componentWillUpdate() {
+        this.loadFavorites()
     }    
 
     loadFavorites() {
@@ -27,12 +31,11 @@ export default class Favorites extends React.Component {
     }
 
     deleteFavorite(index) {
-        var self = this
             axios({
                 method: 'DELETE',
                 url: '/api/favorites',
                 data: {
-                    id: self.state.list[index].id
+                    id: index
                 }
             })
             .then((resp) => {
@@ -47,18 +50,25 @@ export default class Favorites extends React.Component {
     }
 
     displayFavorites() {
-        return this.state.list.map((ele,i) => (
-            <Col xs={6} md={3}>
-                <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path} alt="242x200">
-                    <h3>{ele.title}</h3>
-                    <h5>Rating: {ele.vote_average}</h5>
-                    <p>{ele.overview}</p>
-                    <p>
-                        <Button bsStyle="default" onClick={this.postMovieInfo.bind(this)}>Favorite</Button>
-                    </p>
-                </Thumbnail>
-            </Col>
-        ))
+        return (
+            <Grid fluid={true}>
+                {_.chunk(this.state.list, 3).map(e => (
+                    <Row>
+                    {e.map(ele => (
+                        <Col xs={6} md={4}>
+                            <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
+                                <h3>{ele.title}</h3>
+                                <p>{ele.overview}</p>
+                                <p>
+                                <Button bsStyle="default" onClick={this.deleteFavorite.bind(this, ele.id)}>Delete Favorite</Button>
+                                </p>
+                            </Thumbnail>
+                        </Col>
+                        ))}
+                    </Row>
+                ))}
+            </Grid>
+        )
     }
 
     render() {
@@ -88,11 +98,7 @@ export default class Favorites extends React.Component {
                         </Carousel.Item>
                     </Carousel>
 
-                <Grid>
-                    <Row>
-                        {this.displayFavorites()}
-                    </Row>
-                </Grid>
+                    {this.displayFavorites()}
             </div>
             )
         }

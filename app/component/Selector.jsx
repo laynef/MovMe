@@ -5,7 +5,14 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 
 import { Button, Carousel, CarouselCaption, CarouselItem, Grid, Col, Row, Thumbnail } from 'react-bootstrap'
 
-const options = ["comedies", "action", "adventure", "fantasy", "drama", "horror"]
+const options = [
+            "comedies", 
+            "action", 
+            "adventure", 
+            "fantasy", 
+            "drama", 
+            "horror"
+            ]
 
 const arr = [
             "adventureList",
@@ -79,12 +86,6 @@ export default class Selector extends React.Component {
         window.localStorage.setItem('currentMovie', JSON.stringify(ph))
     }
 
-    getCurrMovie(e) {
-        this.setState({ currMovie: e.target.value })
-        this.postMovieInfo()
-        window.localStorage.setItem(['currentMovie'], JSON.stringify(e.target.value))
-    }
-
     getName(e) {
         this.setState({curr : e})
     }
@@ -98,12 +99,13 @@ export default class Selector extends React.Component {
         this.setState(this.state.direction)
     }
 
-    postMovieInfo() {
+    postMovieInfo(e) {
+        let ph = e[0]
         axios.post('/api/favorites', {
-                poster_path: this.state.currMovie.poster_path,
-                title: this.state.currMovie.title,
-                overview: this.state.currMovie.overview,
-                vote_average: JSON.stringify(this.state.currMovie.vote_average)
+                poster_path: ph.poster_path,
+                title: ph.title,
+                overview: ph.overview,
+                vote_average: JSON.stringify(ph.vote_average)
             })
             .then((resp) => {
                 console.log(`postMovieInfo successful`)
@@ -154,7 +156,7 @@ export default class Selector extends React.Component {
                                                         <h3>{ele.title}</h3>
                                                         <h5>Rating: {ele.vote_average}</h5>
                                                         <p>
-                                                            <Button bsStyle="default" onClick={this.getCurrMovie.bind(this)}>Favorite</Button>
+                                                            <Button bsStyle="default" onClick={this.postMovieInfo.bind(this, [ele])}>Favorite</Button>
                                                         </p>
                                                     </Thumbnail>
                                                 </Col>
