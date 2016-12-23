@@ -119,6 +119,7 @@ export default class Selector extends React.Component {
 
                 {/* Image Div */}
                   <Carousel>
+                    {this.state.init.filter(e => { _.identity(e) })}
                     {this.state.init.map(e => (
                         <Carousel.Item>
                             <img width={900} height={500} alt="900x500" src={'https://image.tmdb.org/t/p/w500' + e.poster_path}/>
@@ -133,7 +134,7 @@ export default class Selector extends React.Component {
                 {/* Grid Picker */}
                   <Grid fluid={true} bsClass="gridMain">
                   {options.map(name => (
-                    <Carousel wrap={false} activeIndex={this.state.index[name + 'Index']} direction={this.state.direction[name + 'Direction']} onClick={this.getName.bind(this, [name])} onSelect={this.getAction.bind(this)}>
+                    <Carousel wrap={false} activeIndex={this.state.index[name + 'Index']} direction={this.state.direction[name + 'Direction']} onMouseEnter={this.getName.bind(this, [name])} onSelect={this.getAction.bind(this)}>
                         {_.chunk(this.state[name + 'List'], 4).map((e) => (
                                 <Carousel.Item>
                                         {e.map(ele => (
@@ -141,7 +142,6 @@ export default class Selector extends React.Component {
                                                     <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path} alt="242x200">
                                                         <h3>{ele.title}</h3>
                                                         <h5>Rating: {ele.vote_average}</h5>
-                                                        <p>{ele.overview}</p>
                                                         <p>
                                                             <Button bsStyle="default" value={ele} onClick={this.getCurrMovie.bind(this)}>Favorite</Button>
                                                         </p>

@@ -64,11 +64,11 @@
 
 	var _SelectorPage2 = _interopRequireDefault(_SelectorPage);
 
-	var _FavoritesPage = __webpack_require__(486);
+	var _FavoritesPage = __webpack_require__(513);
 
 	var _FavoritesPage2 = _interopRequireDefault(_FavoritesPage);
 
-	var _index = __webpack_require__(513);
+	var _index = __webpack_require__(515);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -45254,11 +45254,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _axios = __webpack_require__(488);
+	var _axios = __webpack_require__(486);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _lodash = __webpack_require__(514);
+	var _lodash = __webpack_require__(511);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -45393,6 +45393,9 @@
 	                _react2.default.createElement(
 	                    _reactBootstrap.Carousel,
 	                    null,
+	                    this.state.init.filter(function (e) {
+	                        _lodash2.default.identity(e);
+	                    }),
 	                    this.state.init.map(function (e) {
 	                        return _react2.default.createElement(
 	                            _reactBootstrap.Carousel.Item,
@@ -45421,7 +45424,7 @@
 	                    options.map(function (name) {
 	                        return _react2.default.createElement(
 	                            _reactBootstrap.Carousel,
-	                            { wrap: false, activeIndex: _this4.state.index[name + 'Index'], direction: _this4.state.direction[name + 'Direction'], onClick: _this4.getName.bind(_this4, [name]), onSelect: _this4.getAction.bind(_this4) },
+	                            { wrap: false, activeIndex: _this4.state.index[name + 'Index'], direction: _this4.state.direction[name + 'Direction'], onMouseEnter: _this4.getName.bind(_this4, [name]), onSelect: _this4.getAction.bind(_this4) },
 	                            _lodash2.default.chunk(_this4.state[name + 'List'], 4).map(function (e) {
 	                                return _react2.default.createElement(
 	                                    _reactBootstrap.Carousel.Item,
@@ -45443,11 +45446,6 @@
 	                                                    null,
 	                                                    'Rating: ',
 	                                                    ele.vote_average
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'p',
-	                                                    null,
-	                                                    ele.overview
 	                                                ),
 	                                                _react2.default.createElement(
 	                                                    'p',
@@ -45479,54 +45477,7 @@
 /* 486 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Favorites = __webpack_require__(487);
-
-	var _Favorites2 = _interopRequireDefault(_Favorites);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var FavoritesPage = function (_React$Component) {
-	    _inherits(FavoritesPage, _React$Component);
-
-	    function FavoritesPage() {
-	        _classCallCheck(this, FavoritesPage);
-
-	        return _possibleConstructorReturn(this, (FavoritesPage.__proto__ || Object.getPrototypeOf(FavoritesPage)).apply(this, arguments));
-	    }
-
-	    _createClass(FavoritesPage, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_Favorites2.default, null)
-	            );
-	        }
-	    }]);
-
-	    return FavoritesPage;
-	}(_react2.default.Component);
-
-	exports.default = FavoritesPage;
+	module.exports = __webpack_require__(487);
 
 /***/ },
 /* 487 */
@@ -45534,221 +45485,10 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _axios = __webpack_require__(488);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	var _reactBootstrap = __webpack_require__(234);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Favorites = function (_React$Component) {
-	    _inherits(Favorites, _React$Component);
-
-	    function Favorites(props) {
-	        _classCallCheck(this, Favorites);
-
-	        var _this = _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).call(this, props));
-
-	        _this.state = {
-	            list: []
-	        };
-	        return _this;
-	    }
-
-	    _createClass(Favorites, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            this.loadFavorites();
-	        }
-	    }, {
-	        key: 'loadFavorites',
-	        value: function loadFavorites() {
-	            var _this2 = this;
-
-	            _axios2.default.get('/api/favorites').then(function (resp) {
-	                _this2.setState({ list: resp.data });
-	            }).catch(function (err) {
-	                console.log('loadFavorites error: ' + err);
-	            });
-	        }
-	    }, {
-	        key: 'deleteFavorite',
-	        value: function deleteFavorite(index) {
-	            var self = this;
-	            (0, _axios2.default)({
-	                method: 'DELETE',
-	                url: '/api/favorites',
-	                data: {
-	                    id: self.state.list[index].id
-	                }
-	            }).then(function (resp) {
-	                console.log('Successful delete');
-	            }).catch(function (err) {
-	                console.log('Error in deleting favorite: ' + err);
-	            });
-	            var copy = this.state.list.slice();
-	            copy.splice(index, 1);
-	            this.setState({ list: copy });
-	        }
-	    }, {
-	        key: 'displayFavorites',
-	        value: function displayFavorites() {
-	            var _this3 = this;
-
-	            return this.state.list.map(function (ele, i) {
-	                return _react2.default.createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 6, md: 3 },
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Thumbnail,
-	                        { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path, alt: '242x200' },
-	                        _react2.default.createElement(
-	                            'h3',
-	                            null,
-	                            ele.title
-	                        ),
-	                        _react2.default.createElement(
-	                            'h5',
-	                            null,
-	                            'Rating: ',
-	                            ele.vote_average
-	                        ),
-	                        _react2.default.createElement(
-	                            'p',
-	                            null,
-	                            ele.overview
-	                        ),
-	                        _react2.default.createElement(
-	                            'p',
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Button,
-	                                { bsStyle: 'default', onClick: _this3.postMovieInfo.bind(_this3) },
-	                                'Favorite'
-	                            )
-	                        )
-	                    )
-	                );
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'favoritesPage' },
-	                _react2.default.createElement(
-	                    _reactBootstrap.Carousel,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Carousel.Item,
-	                        null,
-	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/ncF41VA.jpg' }),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Carousel.Caption,
-	                            null,
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'First slide label'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                null,
-	                                'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Carousel.Item,
-	                        null,
-	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/DRNFL2C.jpg' }),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Carousel.Caption,
-	                            null,
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'Second slide label'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                null,
-	                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Carousel.Item,
-	                        null,
-	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/bAsrJzX.jpg' }),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Carousel.Caption,
-	                            null,
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'Third slide label'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                null,
-	                                'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-	                            )
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Grid,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Row,
-	                        null,
-	                        this.displayFavorites()
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Favorites;
-	}(_react2.default.Component);
-
-	exports.default = Favorites;
-
-/***/ },
-/* 488 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(489);
-
-/***/ },
-/* 489 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var utils = __webpack_require__(490);
-	var bind = __webpack_require__(491);
-	var Axios = __webpack_require__(492);
-	var defaults = __webpack_require__(493);
+	var utils = __webpack_require__(488);
+	var bind = __webpack_require__(489);
+	var Axios = __webpack_require__(490);
+	var defaults = __webpack_require__(491);
 
 	/**
 	 * Create an instance of Axios
@@ -45781,15 +45521,15 @@
 	};
 
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(510);
-	axios.CancelToken = __webpack_require__(511);
-	axios.isCancel = __webpack_require__(507);
+	axios.Cancel = __webpack_require__(508);
+	axios.CancelToken = __webpack_require__(509);
+	axios.isCancel = __webpack_require__(505);
 
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(512);
+	axios.spread = __webpack_require__(510);
 
 	module.exports = axios;
 
@@ -45798,12 +45538,12 @@
 
 
 /***/ },
-/* 490 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var bind = __webpack_require__(491);
+	var bind = __webpack_require__(489);
 
 	/*global toString:true*/
 
@@ -46103,7 +45843,7 @@
 
 
 /***/ },
-/* 491 */
+/* 489 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46120,17 +45860,17 @@
 
 
 /***/ },
-/* 492 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(493);
-	var utils = __webpack_require__(490);
-	var InterceptorManager = __webpack_require__(504);
-	var dispatchRequest = __webpack_require__(505);
-	var isAbsoluteURL = __webpack_require__(508);
-	var combineURLs = __webpack_require__(509);
+	var defaults = __webpack_require__(491);
+	var utils = __webpack_require__(488);
+	var InterceptorManager = __webpack_require__(502);
+	var dispatchRequest = __webpack_require__(503);
+	var isAbsoluteURL = __webpack_require__(506);
+	var combineURLs = __webpack_require__(507);
 
 	/**
 	 * Create a new instance of Axios
@@ -46211,13 +45951,13 @@
 
 
 /***/ },
-/* 493 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(490);
-	var normalizeHeaderName = __webpack_require__(494);
+	var utils = __webpack_require__(488);
+	var normalizeHeaderName = __webpack_require__(492);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -46234,10 +45974,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(495);
+	    adapter = __webpack_require__(493);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(495);
+	    adapter = __webpack_require__(493);
 	  }
 	  return adapter;
 	}
@@ -46311,12 +46051,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 494 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -46329,18 +46069,18 @@
 
 
 /***/ },
-/* 495 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(490);
-	var settle = __webpack_require__(496);
-	var buildURL = __webpack_require__(499);
-	var parseHeaders = __webpack_require__(500);
-	var isURLSameOrigin = __webpack_require__(501);
-	var createError = __webpack_require__(497);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(502);
+	var utils = __webpack_require__(488);
+	var settle = __webpack_require__(494);
+	var buildURL = __webpack_require__(497);
+	var parseHeaders = __webpack_require__(498);
+	var isURLSameOrigin = __webpack_require__(499);
+	var createError = __webpack_require__(495);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(500);
 
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -46436,7 +46176,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(503);
+	      var cookies = __webpack_require__(501);
 
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -46513,12 +46253,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 496 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createError = __webpack_require__(497);
+	var createError = __webpack_require__(495);
 
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -46544,12 +46284,12 @@
 
 
 /***/ },
-/* 497 */
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var enhanceError = __webpack_require__(498);
+	var enhanceError = __webpack_require__(496);
 
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -46567,7 +46307,7 @@
 
 
 /***/ },
-/* 498 */
+/* 496 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46592,12 +46332,12 @@
 
 
 /***/ },
-/* 499 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -46666,12 +46406,12 @@
 
 
 /***/ },
-/* 500 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	/**
 	 * Parse headers into an object
@@ -46709,12 +46449,12 @@
 
 
 /***/ },
-/* 501 */
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -46783,7 +46523,7 @@
 
 
 /***/ },
-/* 502 */
+/* 500 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46825,12 +46565,12 @@
 
 
 /***/ },
-/* 503 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -46884,12 +46624,12 @@
 
 
 /***/ },
-/* 504 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -46942,15 +46682,15 @@
 
 
 /***/ },
-/* 505 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
-	var transformData = __webpack_require__(506);
-	var isCancel = __webpack_require__(507);
-	var defaults = __webpack_require__(493);
+	var utils = __webpack_require__(488);
+	var transformData = __webpack_require__(504);
+	var isCancel = __webpack_require__(505);
+	var defaults = __webpack_require__(491);
 
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -47027,12 +46767,12 @@
 
 
 /***/ },
-/* 506 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(490);
+	var utils = __webpack_require__(488);
 
 	/**
 	 * Transform the data for a request or a response
@@ -47053,7 +46793,7 @@
 
 
 /***/ },
-/* 507 */
+/* 505 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47064,7 +46804,7 @@
 
 
 /***/ },
-/* 508 */
+/* 506 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47084,7 +46824,7 @@
 
 
 /***/ },
-/* 509 */
+/* 507 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47102,7 +46842,7 @@
 
 
 /***/ },
-/* 510 */
+/* 508 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47127,12 +46867,12 @@
 
 
 /***/ },
-/* 511 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Cancel = __webpack_require__(510);
+	var Cancel = __webpack_require__(508);
 
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -47190,7 +46930,7 @@
 
 
 /***/ },
-/* 512 */
+/* 510 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47223,13 +46963,7 @@
 
 
 /***/ },
-/* 513 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 514 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -64298,10 +64032,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(515)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(512)(module)))
 
 /***/ },
-/* 515 */
+/* 512 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -64315,6 +64049,270 @@
 		return module;
 	}
 
+
+/***/ },
+/* 513 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Favorites = __webpack_require__(514);
+
+	var _Favorites2 = _interopRequireDefault(_Favorites);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FavoritesPage = function (_React$Component) {
+	    _inherits(FavoritesPage, _React$Component);
+
+	    function FavoritesPage() {
+	        _classCallCheck(this, FavoritesPage);
+
+	        return _possibleConstructorReturn(this, (FavoritesPage.__proto__ || Object.getPrototypeOf(FavoritesPage)).apply(this, arguments));
+	    }
+
+	    _createClass(FavoritesPage, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_Favorites2.default, null)
+	            );
+	        }
+	    }]);
+
+	    return FavoritesPage;
+	}(_react2.default.Component);
+
+	exports.default = FavoritesPage;
+
+/***/ },
+/* 514 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(486);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _reactBootstrap = __webpack_require__(234);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Favorites = function (_React$Component) {
+	    _inherits(Favorites, _React$Component);
+
+	    function Favorites(props) {
+	        _classCallCheck(this, Favorites);
+
+	        var _this = _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).call(this, props));
+
+	        _this.state = {
+	            list: []
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Favorites, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.loadFavorites();
+	        }
+	    }, {
+	        key: 'loadFavorites',
+	        value: function loadFavorites() {
+	            var _this2 = this;
+
+	            _axios2.default.get('/api/favorites').then(function (resp) {
+	                _this2.setState({ list: resp.data });
+	            }).catch(function (err) {
+	                console.log('loadFavorites error: ' + err);
+	            });
+	        }
+	    }, {
+	        key: 'deleteFavorite',
+	        value: function deleteFavorite(index) {
+	            var self = this;
+	            (0, _axios2.default)({
+	                method: 'DELETE',
+	                url: '/api/favorites',
+	                data: {
+	                    id: self.state.list[index].id
+	                }
+	            }).then(function (resp) {
+	                console.log('Successful delete');
+	            }).catch(function (err) {
+	                console.log('Error in deleting favorite: ' + err);
+	            });
+	            var copy = this.state.list.slice();
+	            copy.splice(index, 1);
+	            this.setState({ list: copy });
+	        }
+	    }, {
+	        key: 'displayFavorites',
+	        value: function displayFavorites() {
+	            var _this3 = this;
+
+	            return this.state.list.map(function (ele, i) {
+	                return _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { xs: 6, md: 3 },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Thumbnail,
+	                        { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path, alt: '242x200' },
+	                        _react2.default.createElement(
+	                            'h3',
+	                            null,
+	                            ele.title
+	                        ),
+	                        _react2.default.createElement(
+	                            'h5',
+	                            null,
+	                            'Rating: ',
+	                            ele.vote_average
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            ele.overview
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Button,
+	                                { bsStyle: 'default', onClick: _this3.postMovieInfo.bind(_this3) },
+	                                'Favorite'
+	                            )
+	                        )
+	                    )
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'favoritesPage' },
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Item,
+	                        null,
+	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/ncF41VA.jpg' }),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Carousel.Caption,
+	                            null,
+	                            _react2.default.createElement(
+	                                'h3',
+	                                null,
+	                                'First slide label'
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                null,
+	                                'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Item,
+	                        null,
+	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/DRNFL2C.jpg' }),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Carousel.Caption,
+	                            null,
+	                            _react2.default.createElement(
+	                                'h3',
+	                                null,
+	                                'Second slide label'
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Item,
+	                        null,
+	                        _react2.default.createElement('img', { width: 900, height: 500, alt: '900x500', src: 'http://i.imgur.com/bAsrJzX.jpg' }),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Carousel.Caption,
+	                            null,
+	                            _react2.default.createElement(
+	                                'h3',
+	                                null,
+	                                'Third slide label'
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                null,
+	                                'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Grid,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Row,
+	                        null,
+	                        this.displayFavorites()
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Favorites;
+	}(_react2.default.Component);
+
+	exports.default = Favorites;
+
+/***/ },
+/* 515 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
