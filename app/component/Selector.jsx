@@ -1,10 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import _ from 'lodash'
+import { Router, Route, Link, browserHistory } from 'react-router'
 
 import { Button, Carousel, CarouselCaption, CarouselItem, Grid, Col, Row, Thumbnail } from 'react-bootstrap'
 
 const options = ["comedies", "action", "adventure", "fantasy", "drama", "horror"]
+
 const arr = [
             "adventureList",
             "actionList",
@@ -13,12 +15,6 @@ const arr = [
             "dramaList",
             "fantasyList"
             ]
-
-const imgs = [
-"http://i.imgur.com/ncF41VA.jpg",
-"http://i.imgur.com/DRNFL2C.jpg",
-"http://i.imgur.com/bAsrJzX.jpg"
-]
 
 export default class Selector extends React.Component {
 
@@ -77,9 +73,16 @@ export default class Selector extends React.Component {
             })
     }
 
+    currMovie(e) {
+        let ph = e[0]
+        this.setState({ currMovie: ph })
+        window.localStorage.setItem('currentMovie', JSON.stringify(ph))
+    }
+
     getCurrMovie(e) {
         this.setState({ currMovie: e.target.value })
         this.postMovieInfo()
+        window.localStorage.setItem(['currentMovie'], JSON.stringify(e.target.value))
     }
 
     getName(e) {
@@ -127,6 +130,9 @@ export default class Selector extends React.Component {
                             <Carousel.Caption>
                                 <h3>{e.title}</h3>
                                 <p>{e.overview}</p>
+                                <Button onClick={this.currMovie.bind(this, [e])}>
+                                    <Link  to="/details">To Detail</Link>
+                                </Button>
                             </Carousel.Caption>
                         </Carousel.Item>
                     ))}
@@ -141,11 +147,14 @@ export default class Selector extends React.Component {
                                 <Carousel.Item>
                                         {e.map(ele => (
                                             <Col xs={6} md={3}>
-                                                    <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path} alt="242x200">
+                                                    <Thumbnail src={'https://image.tmdb.org/t/p/w500' + ele.poster_path}>
+                                                    <Button value={ele} onClick={this.currMovie.bind(this, [ele])}>
+                                    <Link  to="/details">To Detail</Link>
+                                </Button>
                                                         <h3>{ele.title}</h3>
                                                         <h5>Rating: {ele.vote_average}</h5>
                                                         <p>
-                                                            <Button bsStyle="default" value={ele} onClick={this.getCurrMovie.bind(this)}>Favorite</Button>
+                                                            <Button bsStyle="default" onClick={this.getCurrMovie.bind(this)}>Favorite</Button>
                                                         </p>
                                                     </Thumbnail>
                                                 </Col>

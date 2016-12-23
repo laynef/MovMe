@@ -68,6 +68,10 @@
 
 	var _FavoritesPage2 = _interopRequireDefault(_FavoritesPage);
 
+	var _DetailsPage = __webpack_require__(516);
+
+	var _DetailsPage2 = _interopRequireDefault(_DetailsPage);
+
 	var _index = __webpack_require__(515);
 
 	var _index2 = _interopRequireDefault(_index);
@@ -81,7 +85,8 @@
 	        _reactRouter.Route,
 	        { path: '/', component: _MasterPage2.default },
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _SelectorPage2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _FavoritesPage2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _FavoritesPage2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/details', component: _DetailsPage2.default })
 	    )
 	), document.getElementById('app'));
 
@@ -45262,6 +45267,8 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
+	var _reactRouter = __webpack_require__(178);
+
 	var _reactBootstrap = __webpack_require__(234);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -45273,9 +45280,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var options = ["comedies", "action", "adventure", "fantasy", "drama", "horror"];
-	var arr = ["adventureList", "actionList", "horrorList", "comediesList", "dramaList", "fantasyList"];
 
-	var imgs = ["http://i.imgur.com/ncF41VA.jpg", "http://i.imgur.com/DRNFL2C.jpg", "http://i.imgur.com/bAsrJzX.jpg"];
+	var arr = ["adventureList", "actionList", "horrorList", "comediesList", "dramaList", "fantasyList"];
 
 	var Selector = function (_React$Component) {
 	    _inherits(Selector, _React$Component);
@@ -45344,10 +45350,18 @@
 	            });
 	        }
 	    }, {
+	        key: 'currMovie',
+	        value: function currMovie(e) {
+	            var ph = e[0];
+	            this.setState({ currMovie: ph });
+	            window.localStorage.setItem('currentMovie', JSON.stringify(ph));
+	        }
+	    }, {
 	        key: 'getCurrMovie',
 	        value: function getCurrMovie(e) {
 	            this.setState({ currMovie: e.target.value });
 	            this.postMovieInfo();
+	            window.localStorage.setItem(['currentMovie'], JSON.stringify(e.target.value));
 	        }
 	    }, {
 	        key: 'getName',
@@ -45414,6 +45428,15 @@
 	                                    'p',
 	                                    null,
 	                                    e.overview
+	                                ),
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.Button,
+	                                    { onClick: _this4.currMovie.bind(_this4, [e]) },
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/details' },
+	                                        'To Detail'
+	                                    )
 	                                )
 	                            )
 	                        );
@@ -45438,7 +45461,16 @@
 	                                            { xs: 6, md: 3 },
 	                                            _react2.default.createElement(
 	                                                _reactBootstrap.Thumbnail,
-	                                                { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path, alt: '242x200' },
+	                                                { src: 'https://image.tmdb.org/t/p/w500' + ele.poster_path },
+	                                                _react2.default.createElement(
+	                                                    _reactBootstrap.Button,
+	                                                    { value: ele, onClick: _this4.currMovie.bind(_this4, [ele]) },
+	                                                    _react2.default.createElement(
+	                                                        _reactRouter.Link,
+	                                                        { to: '/details' },
+	                                                        'To Detail'
+	                                                    )
+	                                                ),
 	                                                _react2.default.createElement(
 	                                                    'h3',
 	                                                    null,
@@ -45455,7 +45487,7 @@
 	                                                    null,
 	                                                    _react2.default.createElement(
 	                                                        _reactBootstrap.Button,
-	                                                        { bsStyle: 'default', value: ele, onClick: _this4.getCurrMovie.bind(_this4) },
+	                                                        { bsStyle: 'default', onClick: _this4.getCurrMovie.bind(_this4) },
 	                                                        'Favorite'
 	                                                    )
 	                                                )
@@ -64316,6 +64348,157 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 516 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Details = __webpack_require__(517);
+
+	var _Details2 = _interopRequireDefault(_Details);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DetailsPage = function (_React$Component) {
+	    _inherits(DetailsPage, _React$Component);
+
+	    function DetailsPage() {
+	        _classCallCheck(this, DetailsPage);
+
+	        return _possibleConstructorReturn(this, (DetailsPage.__proto__ || Object.getPrototypeOf(DetailsPage)).apply(this, arguments));
+	    }
+
+	    _createClass(DetailsPage, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_Details2.default, null)
+	            );
+	        }
+	    }]);
+
+	    return DetailsPage;
+	}(_react2.default.Component);
+
+	exports.default = DetailsPage;
+
+/***/ },
+/* 517 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(234);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Details = function (_React$Component) {
+	    _inherits(Details, _React$Component);
+
+	    function Details(props) {
+	        _classCallCheck(this, Details);
+
+	        var _this = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
+
+	        _this.state = {
+	            currMovie: {}
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Details, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var object = window.localStorage.getItem('currentMovie');
+	            var realObject = JSON.parse(object);
+	            this.setState({ currMovie: realObject });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            console.log(this.state.currMovie);
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _reactBootstrap.Grid,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Row,
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Col,
+	                            { xs: 6, md: 4 },
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Thumbnail,
+	                                { src: 'https://image.tmdb.org/t/p/w500' + this.state.currMovie.poster_path },
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    null,
+	                                    this.state.currMovie.title
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    null,
+	                                    this.state.currMovie.overview
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactBootstrap.Button,
+	                                        { bsStyle: 'default', block: true },
+	                                        'Favorite'
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Details;
+	}(_react2.default.Component);
+
+	exports.default = Details;
 
 /***/ }
 /******/ ]);
