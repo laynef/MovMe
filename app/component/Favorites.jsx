@@ -28,19 +28,19 @@ export default class Favorites extends React.Component {
     }
 
     deleteFavorite(index) {
-            axios({
-                method: 'DELETE',
-                url: '/api/favorites',
-                data: {
-                    title: index
-                }
-            })
-            .then((resp) => {
-                console.log(`Successful delete`)
-            })
-            .catch((err) => {
-                console.log(`Error in deleting favorite: ${err}`)
-            })
+        axios({
+            method: 'DELETE',
+            url: '/api/favorites',
+            data: {
+                title: index
+            }
+        })
+        .then((resp) => {
+            console.log(`Successful delete`)
+        })
+        .catch((err) => {
+            console.log(`Error in deleting favorite: ${err}`)
+        })
         let copy = this.state.list.slice()
         copy.splice(index, 1)
         this.setState({list: copy})

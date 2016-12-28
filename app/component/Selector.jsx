@@ -127,7 +127,7 @@ export default class Selector extends React.Component {
                   <Carousel>
                     {this.state.init.filter(e => { _.identity(e) })}
                     {this.state.init.map(e => (
-                        <Carousel.Item>
+                        <Carousel.Item bsClass="cars">
                          <Link onClick={this.currMovie.bind(this, [e])} to="/details">
                             <img maxHeight={500} alt="900x500" src={'https://image.tmdb.org/t/p/w500' + e.poster_path}/>
                             <Carousel.Caption>

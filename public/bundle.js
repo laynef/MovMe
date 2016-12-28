@@ -45410,7 +45410,7 @@
 	                    this.state.init.map(function (e) {
 	                        return _react2.default.createElement(
 	                            _reactBootstrap.Carousel.Item,
-	                            null,
+	                            { bsClass: 'cars' },
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
 	                                { onClick: _this4.currMovie.bind(_this4, [e]), to: '/details' },
@@ -64492,6 +64492,10 @@
 
 	var _reactBootstrap = __webpack_require__(234);
 
+	var _reactFontawesome = __webpack_require__(513);
+
+	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64509,7 +64513,8 @@
 	        var _this = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
 
 	        _this.state = {
-	            currMovie: {}
+	            currMovie: {},
+	            clicked: false
 	        };
 	        return _this;
 	    }
@@ -64524,6 +64529,7 @@
 	    }, {
 	        key: 'postMovieInfo',
 	        value: function postMovieInfo() {
+	            this.setState({ clicked: !this.state.clicked });
 	            _axios2.default.post('/api/favorites', {
 	                poster_path: this.state.currMovie.poster_path,
 	                title: this.state.currMovie.title,
@@ -64564,13 +64570,14 @@
 	                                    this.state.currMovie.overview
 	                                ),
 	                                _react2.default.createElement(
-	                                    'p',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactBootstrap.Button,
-	                                        { bsStyle: 'default', onClick: this.postMovieInfo.bind(this) },
-	                                        'Favorite'
-	                                    )
+	                                    _reactBootstrap.Button,
+	                                    { bsClass: 'favButtons', onClick: this.postMovieInfo.bind(this) },
+	                                    this.state.clicked ? _react2.default.createElement(_reactFontawesome2.default, {
+	                                        name: 'heart',
+	                                        size: '2x' }) : _react2.default.createElement(_reactFontawesome2.default, {
+	                                        name: 'heart-o',
+	                                        size: '2x'
+	                                    })
 	                                )
 	                            )
 	                        )
