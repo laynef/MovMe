@@ -82,7 +82,7 @@ export default class SignUp extends React.Component {
 
                 <FormGroup
                 controlId="formBasicText"
-                validationState={this.getValidationState()}
+                validationState={this.validEmail()}
                 >
                 <ControlLabel>Email</ControlLabel>
                 <FormControl
@@ -98,7 +98,7 @@ export default class SignUp extends React.Component {
 
                 <FormGroup
                 controlId="formBasicText"
-                validationState={this.getValidationState()}
+                validationState={this.validPassword()}
                 >
                 <ControlLabel>Password</ControlLabel>
                 <FormControl
@@ -109,12 +109,12 @@ export default class SignUp extends React.Component {
                     onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
-                <HelpBlock>Validation is based on string length.</HelpBlock>
+                <HelpBlock>The length of your password must be 8 or more characters</HelpBlock>
                 </FormGroup>
 
                 <FormGroup
                     controlId="formBasicText"
-                    validationState={this.getValidationState()}
+                    validationState={this.samePassword()}
                 >
                 <ControlLabel>Re-Password</ControlLabel>
                 <FormControl
@@ -125,7 +125,7 @@ export default class SignUp extends React.Component {
                     onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
-                <HelpBlock>Validation is based on string length.</HelpBlock>
+                <HelpBlock>The passwords do not match</HelpBlock>
                 </FormGroup>
 
                 
