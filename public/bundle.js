@@ -64640,6 +64640,8 @@
 
 	var _axios = __webpack_require__(486);
 
+	var _axios2 = _interopRequireDefault(_axios);
+
 	var _reactBootstrap = __webpack_require__(234);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -64668,19 +64670,22 @@
 	                title: 'Username',
 	                placeholder: 'Enter username',
 	                func: _this.placeholderFunc.bind(_this),
-	                help: ''
+	                help: '',
+	                change: _this.handleUsernameChange.bind(_this)
 	            }, {
 	                type: 'email',
 	                title: 'Email',
 	                placeholder: 'Enter email',
 	                func: _this.validEmail.bind(_this),
-	                help: ''
+	                help: '',
+	                change: _this.handleEmailChange.bind(_this)
 	            }, {
 	                type: 'password',
 	                title: 'Password',
 	                placeholder: 'Enter password',
 	                func: _this.placeholderFunc.bind(_this),
-	                help: 'The length of your password must be 8 or more characters'
+	                help: 'The length of your password must be 8 or more characters',
+	                change: _this.handlePasswordChange.bind(_this)
 	            }]
 	        };
 	        return _this;
@@ -64692,6 +64697,21 @@
 	            console.log('placeholder');
 	        }
 	    }, {
+	        key: 'handleUsernameChange',
+	        value: function handleUsernameChange(e) {
+	            this.setState({ username: e.target.value });
+	        }
+	    }, {
+	        key: 'handlePasswordChange',
+	        value: function handlePasswordChange(e) {
+	            this.setState({ password: e.target.value });
+	        }
+	    }, {
+	        key: 'handleEmailChange',
+	        value: function handleEmailChange(e) {
+	            this.setState({ email: e.target.value });
+	        }
+	    }, {
 	        key: 'validEmail',
 	        value: function validEmail() {
 	            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -64700,7 +64720,7 @@
 	    }, {
 	        key: 'submitLogin',
 	        value: function submitLogin() {
-	            _axios.axios.post('/api/user/login', {
+	            _axios2.default.post('/api/login', {
 	                username: this.state.username,
 	                email: this.state.email,
 	                password: this.state.password
@@ -64746,7 +64766,7 @@
 	                                name: e.type,
 	                                value: _this2.state[e.type],
 	                                placeholder: e.placeholder,
-	                                onChange: _this2.handleChange
+	                                onChange: e.change
 	                            }),
 	                            _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                            _react2.default.createElement(
@@ -64800,6 +64820,8 @@
 
 	var _axios = __webpack_require__(486);
 
+	var _axios2 = _interopRequireDefault(_axios);
+
 	var _reactBootstrap = __webpack_require__(234);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -64828,25 +64850,29 @@
 	                title: 'Username',
 	                placeholder: 'Enter username',
 	                func: _this.placeholderFunc.bind(_this),
-	                help: ''
+	                help: '',
+	                change: _this.handleUsernameChange.bind(_this)
 	            }, {
 	                type: 'email',
 	                title: 'Email',
 	                placeholder: 'Enter email',
 	                func: _this.validEmail.bind(_this),
-	                help: ''
+	                help: '',
+	                change: _this.handleEmailChange.bind(_this)
 	            }, {
 	                type: 'password',
 	                title: 'Password',
 	                placeholder: 'Enter password',
 	                func: _this.validPassword.bind(_this),
-	                help: 'The length of your password must be 8 or more characters'
+	                help: 'The length of your password must be 8 or more characters',
+	                change: _this.handlePasswordChange.bind(_this)
 	            }, {
 	                type: 'rePassword',
 	                title: 'Confirm Password',
 	                placeholder: 'Re-Enter password',
 	                func: _this.samePassword.bind(_this),
-	                help: 'The passwords do not match'
+	                help: 'The passwords do not match',
+	                change: _this.handleRePasswordChange.bind(_this)
 	            }]
 	        };
 	        return _this;
@@ -64860,35 +64886,52 @@
 	    }, {
 	        key: 'samePassword',
 	        value: function samePassword() {
+	            console.log('hit same');
 	            return this.state.password === this.state.rePassword;
 	        }
 	    }, {
 	        key: 'validEmail',
 	        value: function validEmail() {
+	            console.log('hit email');
 	            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	            return re.test(this.state.email);
 	        }
 	    }, {
 	        key: 'validPassword',
 	        value: function validPassword() {
+	            console.log('hit pass');
 	            return this.state.password.length >= 8;
 	        }
 	    }, {
 	        key: 'noEmpties',
 	        value: function noEmpties() {
-	            return this.state.email === '' && this.state.username === '' && this.state.password === '' && this.state.rePassword === '';
+	            console.log('hit empty');
+	            return this.state.email !== '' && this.state.username !== '' && this.state.password !== '' && this.state.rePassword !== '';
 	        }
 	    }, {
-	        key: 'handleChange',
-	        value: function handleChange(e) {
-	            var obj = {};
-	            obj[e.target.name] = e.target.value;
-	            this.setState(obj);
+	        key: 'handleUsernameChange',
+	        value: function handleUsernameChange(e) {
+	            this.setState({ username: e.target.value });
+	        }
+	    }, {
+	        key: 'handlePasswordChange',
+	        value: function handlePasswordChange(e) {
+	            this.setState({ password: e.target.value });
+	        }
+	    }, {
+	        key: 'handleEmailChange',
+	        value: function handleEmailChange(e) {
+	            this.setState({ email: e.target.value });
+	        }
+	    }, {
+	        key: 'handleRePasswordChange',
+	        value: function handleRePasswordChange(e) {
+	            this.setState({ rePassword: e.target.value });
 	        }
 	    }, {
 	        key: 'signMeUp',
 	        value: function signMeUp() {
-	            _axios.axios.post('/api/user/register', {
+	            _axios2.default.post('/api/register', {
 	                username: this.state.username,
 	                password: this.state.password,
 	                email: this.state.email
@@ -64899,7 +64942,7 @@
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit() {
-	            return this.validEmail() && this.validPassword() && this.samePassword() && this.signMeUp();
+	            return this.noEmpties() && this.validEmail() && this.validPassword() && this.samePassword() && this.signMeUp();
 	        }
 	    }, {
 	        key: 'render',
@@ -64934,7 +64977,7 @@
 	                                name: e.type,
 	                                value: _this2.state[e.type],
 	                                placeholder: e.placeholder,
-	                                onChange: _this2.handleChange
+	                                onChange: e.change
 	                            }),
 	                            _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                            _react2.default.createElement(
@@ -64947,7 +64990,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    _reactBootstrap.Button,
-	                    { onClick: this.handleSubmit },
+	                    { onClick: this.handleSubmit.bind(this) },
 	                    'Sign Up'
 	                )
 	            );
@@ -64974,10 +65017,6 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(178);
-
-	var _axios = __webpack_require__(486);
 
 	var _Login = __webpack_require__(521);
 
@@ -65031,10 +65070,6 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(178);
-
-	var _axios = __webpack_require__(486);
 
 	var _SignUp = __webpack_require__(522);
 

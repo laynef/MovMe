@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import { axios } from 'axios'
+import axios from 'axios'
 
 import { FormGroup, ControlLabel, FormControl, FormControlFeedback, HelpBlock, Button } from 'react-bootstrap'
 
@@ -19,21 +19,24 @@ export default class Login extends React.Component {
                     title: 'Username',
                     placeholder: 'Enter username',
                     func: this.placeholderFunc.bind(this),
-                    help: ''
+                    help: '',
+                    change: this.handleUsernameChange.bind(this)
                 },
                 {
                     type: 'email',
                     title: 'Email',
                     placeholder: 'Enter email',
                     func: this.validEmail.bind(this),
-                    help: ''
+                    help: '',
+                    change: this.handleEmailChange.bind(this)
                 },
                 {
                     type: 'password',
                     title: 'Password',
                     placeholder: 'Enter password',
                     func: this.placeholderFunc.bind(this),
-                    help: 'The length of your password must be 8 or more characters'
+                    help: 'The length of your password must be 8 or more characters',
+                    change: this.handlePasswordChange.bind(this)
                 }
             ]
         }
@@ -43,13 +46,23 @@ export default class Login extends React.Component {
         console.log(`placeholder`)
     }
 
+    handleUsernameChange(e) {
+        this.setState({username : e.target.value})
+    }
+    handlePasswordChange(e) {
+        this.setState({password : e.target.value})
+    }
+    handleEmailChange(e) {
+        this.setState({email : e.target.value})
+    }
+
     validEmail() {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(this.state.email);
     }
 
     submitLogin() {
-        axios.post('/api/user/login', {
+        axios.post('/api/login', {
             username: this.state.username,
             email: this.state.email,
             password: this.state.password
@@ -77,7 +90,7 @@ export default class Login extends React.Component {
                                     name={e.type}
                                     value={this.state[e.type]}
                                     placeholder={e.placeholder}
-                                    onChange={this.handleChange}
+                                    onChange={e.change}
                                 />
                                 <FormControl.Feedback />
                                 <HelpBlock>{e.help}</HelpBlock>

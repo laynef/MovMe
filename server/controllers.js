@@ -4,16 +4,14 @@ const axios = require('axios')
 const config = require('../config')
 
 module.exports = {
-    user: {
-        login: {
-            post: (req, res) => {
-                models.user.login.post(req.body, res, req)
-            }
-        },
-        register: {
-            post: (req, res) => {
-                models.user.register.post(req.body, res, req)
-            }
+    login: {
+        post: (req, res) => {
+            models.login.post(req.body, res, req)
+        }
+    },
+    register: {
+        post: (req, res) => {
+            models.register.post(req.body, res, req)
         }
     },
     favorites: {

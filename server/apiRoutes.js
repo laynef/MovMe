@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const controllers = require('./controllers')
 
-router.post('/user/login', controllers.user.login.post)
-router.post('/user/register', controllers.user.register.post)
+router.post('/login', controllers.login.post)
+router.post('/register', controllers.register.post)
 
 router.get('/comedies', controllers.comedies.get)
 router.get('/drama', controllers.drama.get)

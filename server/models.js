@@ -3,7 +3,6 @@ const User = require('../database/db')
 const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
-    user: {
         login: {
             post: (data, res, req) => {
                 User.findAll({
@@ -23,7 +22,7 @@ module.exports = {
         },
         register: {
             post: (data, res, req) => {
-                User.createOrFind({
+                User.findOrCreate({
                     where: {
                         email: data.email
                     }
@@ -36,6 +35,7 @@ module.exports = {
                                 email: data.email,
                                 password: hash
                             })
+                            .then(resp => { console.log('Reistered') })
                         })
                         .then(resp => {
                             res.status(201)
@@ -49,8 +49,7 @@ module.exports = {
                     }
                 })
             }
-        }
-    },
+        },
 
     favorites: {
         get: (res) => {

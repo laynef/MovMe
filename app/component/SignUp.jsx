@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import { axios } from 'axios'
+import axios from 'axios'
 
 import { Button, FormGroup, ControlLabel, FormControl, FormControlFeedback, HelpBlock } from 'react-bootstrap'
 
@@ -19,28 +19,32 @@ export default class SignUp extends React.Component {
                     title: 'Username',
                     placeholder: 'Enter username',
                     func: this.placeholderFunc.bind(this),
-                    help: ''
+                    help: '',
+                    change: this.handleUsernameChange.bind(this)
                 },
                 {
                     type: 'email',
                     title: 'Email',
                     placeholder: 'Enter email',
                     func: this.validEmail.bind(this),
-                    help: ''
+                    help: '',
+                    change: this.handleEmailChange.bind(this)
                 },
                 {
                     type: 'password',
                     title: 'Password',
                     placeholder: 'Enter password',
                     func: this.validPassword.bind(this),
-                    help: 'The length of your password must be 8 or more characters'
+                    help: 'The length of your password must be 8 or more characters',
+                    change: this.handlePasswordChange.bind(this)
                 },
                 {
                     type: 'rePassword',
                     title: 'Confirm Password',
                     placeholder: 'Re-Enter password',
                     func: this.samePassword.bind(this),
-                    help: 'The passwords do not match'
+                    help: 'The passwords do not match',
+                    change: this.handleRePasswordChange.bind(this)
                 }
             ]
         }
@@ -51,35 +55,46 @@ export default class SignUp extends React.Component {
     }
 
     samePassword() {
+        console.log(`hit same`)
         return this.state.password === this.state.rePassword
     }
 
     validEmail() {
+        console.log(`hit email`)
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(this.state.email);
     }
 
     validPassword() {
+        console.log(`hit pass`)
         return this.state.password.length >= 8
     }
 
     noEmpties() {
+        console.log(`hit empty`)
         return (
-                    this.state.email === '' &&
-                     this.state.username === '' &&
-                     this.state.password === '' &&
-                     this.state.rePassword === ''
+                    this.state.email !== '' &&
+                     this.state.username !== '' &&
+                     this.state.password !== '' &&
+                     this.state.rePassword !== ''
                 )
     }
 
-    handleChange(e) {
-        let obj = {}
-        obj[e.target.name] = e.target.value
-        this.setState(obj)
+    handleUsernameChange(e) {
+        this.setState({username : e.target.value})
+    }
+    handlePasswordChange(e) {
+        this.setState({password : e.target.value})
+    }
+    handleEmailChange(e) {
+        this.setState({email : e.target.value})
+    }
+    handleRePasswordChange(e) {
+        this.setState({rePassword : e.target.value})
     }
  
     signMeUp() {
-        axios.post('/api/user/register', {
+        axios.post('/api/register', {
             username: this.state.username,
             password: this.state.password,
             email: this.state.email
@@ -90,12 +105,7 @@ export default class SignUp extends React.Component {
     }
 
     handleSubmit() {
-        return (
-                    this.validEmail() &&
-                    this.validPassword() &&
-                    this.samePassword() &&
-                    this.signMeUp()
-                )
+        return this.noEmpties() && this.validEmail() && this.validPassword() && this.samePassword() && this.signMeUp()
     }
 
     render() {
@@ -114,14 +124,14 @@ export default class SignUp extends React.Component {
                                 name={e.type}
                                 value={this.state[e.type]}
                                 placeholder={e.placeholder}
-                                onChange={this.handleChange}
+                                onChange={e.change}
                             />
                             <FormControl.Feedback />
                             <HelpBlock>{e.help}</HelpBlock>
                         </FormGroup>
                     ))}
                 </form>
-                <Button onClick={this.handleSubmit}>Sign Up</Button>
+                <Button onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
             </div>
             )
         }
