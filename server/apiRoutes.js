@@ -1,6 +1,10 @@
 const router = require('express').Router()
 const controllers = require('./controllers')
 
+router.post('/user/login', controllers.user.login.post)
+router.post('/user/register', controllers.user.register.post)
+router.get('/user/logout', controllers.user.logout.get)
+
 router.get('/comedies', controllers.comedies.get)
 router.get('/drama', controllers.drama.get)
 router.get('/action', controllers.action.get)

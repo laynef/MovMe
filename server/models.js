@@ -1,6 +1,57 @@
 const Fav = require('../database/db')
+const User = require('../database/db')
+const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
+    user: {
+        login: {
+            post: (data, res, req) => {
+                User.findAll({
+                    where: {
+                        username: data.username,
+                        email: data.email
+                    }
+                })
+                .then(resp => {
+                     bcrypt.compare(data.password, resp.password, (err, result) => {
+                         if (result) {
+                             res.send(resp)
+                         }
+                     })
+                })
+            }
+        },
+        register: {
+            post: (data, res, req) => {
+                User.createOrFind({
+                    where: {
+                        email: data.email
+                    }
+                })
+                .spread((user, exists) => {
+                    if (!exists) {
+                        bcrypt.hash(data.password, data.password.length, (err, hash) => {
+                            User.create({
+                                username: data.username,
+                                email: data.email,
+                                password: hash
+                            })
+                        })
+                        .then(resp => {
+                            res.status(201)
+                        })
+                    } else {
+                        bcrypt.compare(data.password, user.password, (err, result) => {
+                            if (result) {
+                                res.send(user)
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    },
+
     favorites: {
         get: (res) => {
             Fav.findAll()
