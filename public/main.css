@@ -11,6 +11,24 @@
     font-weight: 300;
     margin-top: 70px; }
 
+#loginPage {
+  margin: 0 auto;
+  text-align: center; }
+  #loginPage h1 {
+    font-family: 'Nunito Sans';
+    font-size: 48px;
+    font-weight: 300;
+    margin-top: 70px; }
+
+#signUpPage {
+  margin: 0 auto;
+  text-align: center; }
+  #signUpPage h1 {
+    font-family: 'Nunito Sans';
+    font-size: 48px;
+    font-weight: 300;
+    margin-top: 70px; }
+
 body {
   margin: 0;
   padding: 0; }

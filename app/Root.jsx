@@ -6,6 +6,8 @@ import MasterPage from './pages/MasterPage.jsx'
 import SelectorPage from './pages/SelectorPage.jsx'
 import FavoritesPage from './pages/FavoritesPage.jsx'
 import DetailsPage from './pages/DetailsPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import SignUpPage from './pages/SignUpPage.jsx'
 
 import styles from './sass/index.scss'
 
@@ -15,6 +17,8 @@ ReactDOM.render((
             <IndexRoute component={SelectorPage}/>
                 <Route path="/favorites" component={FavoritesPage}/>
                 <Route path="/details" component={DetailsPage}/>
+                <Route path="/login" component={LoginPage}/>
+                <Route path="/signUp" component={SignUpPage}/>
             </Route>
         </Router>
 ), document.getElementById('app'))

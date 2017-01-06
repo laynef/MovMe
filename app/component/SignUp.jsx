@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import { axios } from 'axios'
 
-import { Button, FormGroup, ControlLabel, Modal, ModalHeader, ModalFooter, ModalBody, FormControl, FormControlFeedback, HelpBlock } from 'react-bootstrap'
+import { Button, FormGroup, ControlLabel, FormControl, FormControlFeedback, HelpBlock } from 'react-bootstrap'
 
 export default class SignUp extends React.Component {
 
@@ -12,38 +12,42 @@ export default class SignUp extends React.Component {
             username: '',
             password: '',
             email: '',
-            rePassword: ''
+            rePassword: '',
+            fields: [
+                {
+                    type: 'username',
+                    title: 'Username',
+                    placeholder: 'Enter username',
+                    func: this.placeholderFunc.bind(this),
+                    help: ''
+                },
+                {
+                    type: 'email',
+                    title: 'Email',
+                    placeholder: 'Enter email',
+                    func: this.validEmail.bind(this),
+                    help: ''
+                },
+                {
+                    type: 'password',
+                    title: 'Password',
+                    placeholder: 'Enter password',
+                    func: this.validPassword.bind(this),
+                    help: 'The length of your password must be 8 or more characters'
+                },
+                {
+                    type: 'rePassword',
+                    title: 'Confirm Password',
+                    placeholder: 'Re-Enter password',
+                    func: this.samePassword.bind(this),
+                    help: 'The passwords do not match'
+                }
+            ]
         }
-        const fields = [
-            {
-                type: 'username',
-                title: 'Username',
-                placeholder: 'Enter username',
-                func: this.getValidationState.bind(this),
-                help: ''
-            },
-            {
-                type: 'email',
-                title: 'Email',
-                placeholder: 'Enter email',
-                func: this.validEmail.bind(this),
-                help: ''
-            },
-            {
-                type: 'password',
-                title: 'Password',
-                placeholder: 'Enter password',
-                func: this.validPassword.bind(this),
-                help: 'The length of your password must be 8 or more characters'
-            },
-            {
-                type: 'rePassword',
-                title: 'Confirm Password',
-                placeholder: 'Re-Enter password',
-                func: this.samePassword.bind(this),
-                help: 'The passwords do not match'
-            }
-        ]
+    }
+
+    placeholderFunc() {
+        console.log(`placeholder`)
     }
 
     samePassword() {
@@ -96,34 +100,28 @@ export default class SignUp extends React.Component {
 
     render() {
         return (
-            <div>
-                <Modal.Header closeButton>
-                    <Modal.Title>Sign Up</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form>
-                        {this.fields.map(e => (
-                            <FormGroup
-                            controlId="formBasicText"
-                            validationState={e.func}
-                            >
-                                <ControlLabel>{e.title}</ControlLabel>
-                                <FormControl
-                                    type="text"
-                                    name={e.type}
-                                    value={this.state[e.type]}
-                                    placeholder={e.placeholder}
-                                    onChange={this.handleChange}
-                                />
-                                <FormControl.Feedback />
-                                <HelpBlock>{e.help}</HelpBlock>
-                            </FormGroup>
-                        ))}
-                    </form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.handleSubmit}>Sign Up</Button>
-                </Modal.Footer>
+            <div id="signUpPage">
+                <h1>Sign Up</h1>
+                <form>
+                    {this.state.fields.map(e => (
+                        <FormGroup
+                        controlId="formBasicText"
+                        validationState={e.func}
+                        >
+                            <ControlLabel>{e.title}</ControlLabel>
+                            <FormControl
+                                type="text"
+                                name={e.type}
+                                value={this.state[e.type]}
+                                placeholder={e.placeholder}
+                                onChange={this.handleChange}
+                            />
+                            <FormControl.Feedback />
+                            <HelpBlock>{e.help}</HelpBlock>
+                        </FormGroup>
+                    ))}
+                </form>
+                <Button onClick={this.handleSubmit}>Sign Up</Button>
             </div>
             )
         }
