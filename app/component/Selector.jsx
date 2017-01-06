@@ -173,6 +173,7 @@ export default class Selector extends React.Component {
                         </Carousel>
                     ))}
                     </Grid>
+
             </div>
             )
         }
