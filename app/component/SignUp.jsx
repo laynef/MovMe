@@ -2,6 +2,8 @@ import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import { axios } from 'axios'
 
+import { Button, FormGroup, ControlLabel, Modal, ModalHeader, ModalFooter, ModalBody, FormControl, FormControlFeedback, HelpBlock } from 'react-bootstrap'
+
 export default class SignUp extends React.Component {
 
     constructor(props) {
@@ -12,6 +14,36 @@ export default class SignUp extends React.Component {
             email: '',
             rePassword: ''
         }
+        const fields = [
+            {
+                type: 'username',
+                title: 'Username',
+                placeholder: 'Enter username',
+                func: this.getValidationState.bind(this),
+                help: ''
+            },
+            {
+                type: 'email',
+                title: 'Email',
+                placeholder: 'Enter email',
+                func: this.validEmail.bind(this),
+                help: ''
+            },
+            {
+                type: 'password',
+                title: 'Password',
+                placeholder: 'Enter password',
+                func: this.validPassword.bind(this),
+                help: 'The length of your password must be 8 or more characters'
+            },
+            {
+                type: 'rePassword',
+                title: 'Confirm Password',
+                placeholder: 'Re-Enter password',
+                func: this.samePassword.bind(this),
+                help: 'The passwords do not match'
+            }
+        ]
     }
 
     samePassword() {
@@ -54,81 +86,45 @@ export default class SignUp extends React.Component {
     }
 
     handleSubmit() {
-        if (this.validEmail() &&
-             this.samePassword() &&
-             this.validPassword()) {
-                 this.signMeUp()
-             }
+        return (
+                    this.validEmail() &&
+                    this.validPassword() &&
+                    this.samePassword() &&
+                    this.signMeUp()
+                )
     }
 
     render() {
         return (
-            <form>
-                <FormGroup
-                controlId="formBasicText"
-                validationState={this.getValidationState()}
-                >
-                <ControlLabel>Username</ControlLabel>
-                <FormControl
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    placeholder="Enter Username"
-                    onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>Validation is based on string length.</HelpBlock>
-                </FormGroup>
-
-                <FormGroup
-                controlId="formBasicText"
-                validationState={this.validEmail()}
-                >
-                <ControlLabel>Email</ControlLabel>
-                <FormControl
-                    type="text"
-                    name="email"
-                    value={this.state.email}
-                    placeholder="Enter Email"
-                    onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>Validation is based on string length.</HelpBlock>
-                </FormGroup>
-
-                <FormGroup
-                controlId="formBasicText"
-                validationState={this.validPassword()}
-                >
-                <ControlLabel>Password</ControlLabel>
-                <FormControl
-                    type="text"
-                    name="password"
-                    value={this.state.password}
-                    placeholder="Enter Password"
-                    onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>The length of your password must be 8 or more characters</HelpBlock>
-                </FormGroup>
-
-                <FormGroup
-                    controlId="formBasicText"
-                    validationState={this.samePassword()}
-                >
-                <ControlLabel>Re-Password</ControlLabel>
-                <FormControl
-                    type="text"
-                    name="rePassword"
-                    value={this.state.rePassword}
-                    placeholder="Re-Enter Password"
-                    onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>The passwords do not match</HelpBlock>
-                </FormGroup>
-
-            </form>
+            <div>
+                <Modal.Header closeButton>
+                    <Modal.Title>Sign Up</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        {this.fields.map(e => (
+                            <FormGroup
+                            controlId="formBasicText"
+                            validationState={e.func}
+                            >
+                                <ControlLabel>{e.title}</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    name={e.type}
+                                    value={this.state[e.type]}
+                                    placeholder={e.placeholder}
+                                    onChange={this.handleChange}
+                                />
+                                <FormControl.Feedback />
+                                <HelpBlock>{e.help}</HelpBlock>
+                            </FormGroup>
+                        ))}
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.handleSubmit}>Sign Up</Button>
+                </Modal.Footer>
+            </div>
             )
         }
 }

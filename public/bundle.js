@@ -72,6 +72,10 @@
 
 	var _DetailsPage2 = _interopRequireDefault(_DetailsPage);
 
+	var _Login = __webpack_require__(521);
+
+	var _Login2 = _interopRequireDefault(_Login);
+
 	var _index = __webpack_require__(519);
 
 	var _index2 = _interopRequireDefault(_index);
@@ -86,6 +90,7 @@
 	        { path: '/', component: _MasterPage2.default },
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _SelectorPage2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _FavoritesPage2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/details', component: _DetailsPage2.default })
 	    )
 	), document.getElementById('app'));
@@ -26422,6 +26427,8 @@
 
 	var _reactBootstrap = __webpack_require__(234);
 
+	var _Login = __webpack_require__(521);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26475,6 +26482,15 @@
 	                                    _reactRouter.Link,
 	                                    { className: 'topNavLink', to: '/favorites' },
 	                                    'Favorites'
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.NavItem,
+	                                { eventKey: 1 },
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: 'topNavLink', to: '/login' },
+	                                    'Login'
 	                                )
 	                            )
 	                        )
@@ -64597,6 +64613,368 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 520 */,
+/* 521 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(178);
+
+	var _axios = __webpack_require__(486);
+
+	var _SignUp = __webpack_require__(522);
+
+	var _reactBootstrap = __webpack_require__(234);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Login = function (_React$Component) {
+	    _inherits(Login, _React$Component);
+
+	    function Login(props) {
+	        _classCallCheck(this, Login);
+
+	        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+	        _this.state = {
+	            showModal: true,
+	            username: '',
+	            email: '',
+	            password: '',
+	            clicked: false
+	        };
+	        var fields = [{
+	            type: 'username',
+	            title: 'Username',
+	            placeholder: 'Enter username',
+	            func: function func() {},
+	            help: ''
+	        }, {
+	            type: 'email',
+	            title: 'Email',
+	            placeholder: 'Enter email',
+	            func: _this.validEmail.bind(_this),
+	            help: ''
+	        }, {
+	            type: 'password',
+	            title: 'Password',
+	            placeholder: 'Enter password',
+	            func: function func() {},
+	            help: 'The length of your password must be 8 or more characters'
+	        }];
+	        return _this;
+	    }
+
+	    _createClass(Login, [{
+	        key: 'validEmail',
+	        value: function validEmail() {
+	            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	            return re.test(this.state.email);
+	        }
+	    }, {
+	        key: 'toggleModal',
+	        value: function toggleModal() {
+	            this.setState({ showModal: !this.state.showModal });
+	        }
+	    }, {
+	        key: 'submitLogin',
+	        value: function submitLogin() {
+	            _axios.axios.post('/api/user/login', {
+	                username: this.state.username,
+	                email: this.state.email,
+	                password: this.state.password
+	            }).then(function (resp) {
+	                console.log('Successful Login');
+	            });
+	        }
+	    }, {
+	        key: 'signUp',
+	        value: function signUp() {
+	            this.setState({ clicked: !this.state.clicked });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                _reactBootstrap.Modal,
+	                null,
+	                this.state.clicked ? _react2.default.createElement(_SignUp.SignUp, null) : this.fields.map(function (e) {
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Modal.Header,
+	                            { closeButton: true },
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Modal.Title,
+	                                null,
+	                                'Login'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Modal.Body,
+	                            null,
+	                            _react2.default.createElement(
+	                                'form',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.FormGroup,
+	                                    {
+	                                        controlId: 'formBasicText',
+	                                        validationState: e.func
+	                                    },
+	                                    _react2.default.createElement(
+	                                        _reactBootstrap.ControlLabel,
+	                                        null,
+	                                        e.title
+	                                    ),
+	                                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                                        type: 'text',
+	                                        name: e.type,
+	                                        value: _this2.state[e.type],
+	                                        placeholder: e.placeholder,
+	                                        onChange: _this2.handleChange
+	                                    }),
+	                                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                                    _react2.default.createElement(
+	                                        _reactBootstrap.HelpBlock,
+	                                        null,
+	                                        e.help
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Modal.Footer,
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Button,
+	                                { onClick: _this2.submitLogin },
+	                                'Login'
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Button,
+	                                { onClick: _this2.signUp },
+	                                'Sign Up'
+	                            )
+	                        )
+	                    );
+	                })
+	            );
+	        }
+	    }]);
+
+	    return Login;
+	}(_react2.default.Component);
+
+	exports.default = Login;
+
+/***/ },
+/* 522 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(178);
+
+	var _axios = __webpack_require__(486);
+
+	var _reactBootstrap = __webpack_require__(234);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SignUp = function (_React$Component) {
+	    _inherits(SignUp, _React$Component);
+
+	    function SignUp(props) {
+	        _classCallCheck(this, SignUp);
+
+	        var _this = _possibleConstructorReturn(this, (SignUp.__proto__ || Object.getPrototypeOf(SignUp)).call(this, props));
+
+	        _this.state = {
+	            username: '',
+	            password: '',
+	            email: '',
+	            rePassword: ''
+	        };
+	        var fields = [{
+	            type: 'username',
+	            title: 'Username',
+	            placeholder: 'Enter username',
+	            func: _this.getValidationState.bind(_this),
+	            help: ''
+	        }, {
+	            type: 'email',
+	            title: 'Email',
+	            placeholder: 'Enter email',
+	            func: _this.validEmail.bind(_this),
+	            help: ''
+	        }, {
+	            type: 'password',
+	            title: 'Password',
+	            placeholder: 'Enter password',
+	            func: _this.validPassword.bind(_this),
+	            help: 'The length of your password must be 8 or more characters'
+	        }, {
+	            type: 'rePassword',
+	            title: 'Confirm Password',
+	            placeholder: 'Re-Enter password',
+	            func: _this.samePassword.bind(_this),
+	            help: 'The passwords do not match'
+	        }];
+	        return _this;
+	    }
+
+	    _createClass(SignUp, [{
+	        key: 'samePassword',
+	        value: function samePassword() {
+	            return this.state.password === this.state.rePassword;
+	        }
+	    }, {
+	        key: 'validEmail',
+	        value: function validEmail() {
+	            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	            return re.test(this.state.email);
+	        }
+	    }, {
+	        key: 'validPassword',
+	        value: function validPassword() {
+	            return this.state.password.length >= 8;
+	        }
+	    }, {
+	        key: 'noEmpties',
+	        value: function noEmpties() {
+	            return this.state.email === '' && this.state.username === '' && this.state.password === '' && this.state.rePassword === '';
+	        }
+	    }, {
+	        key: 'handleChange',
+	        value: function handleChange(e) {
+	            var obj = {};
+	            obj[e.target.name] = e.target.value;
+	            this.setState(obj);
+	        }
+	    }, {
+	        key: 'signMeUp',
+	        value: function signMeUp() {
+	            _axios.axios.post('/api/user/register', {
+	                username: this.state.username,
+	                password: this.state.password,
+	                email: this.state.email
+	            }).then(function (resp) {
+	                console.log('register successful');
+	            });
+	        }
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit() {
+	            return this.validEmail() && this.validPassword() && this.samePassword() && this.signMeUp();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _reactBootstrap.Modal.Header,
+	                    { closeButton: true },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Modal.Title,
+	                        null,
+	                        'Sign Up'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Modal.Body,
+	                    null,
+	                    _react2.default.createElement(
+	                        'form',
+	                        null,
+	                        this.fields.map(function (e) {
+	                            return _react2.default.createElement(
+	                                _reactBootstrap.FormGroup,
+	                                {
+	                                    controlId: 'formBasicText',
+	                                    validationState: e.func
+	                                },
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.ControlLabel,
+	                                    null,
+	                                    e.title
+	                                ),
+	                                _react2.default.createElement(_reactBootstrap.FormControl, {
+	                                    type: 'text',
+	                                    name: e.type,
+	                                    value: _this2.state[e.type],
+	                                    placeholder: e.placeholder,
+	                                    onChange: _this2.handleChange
+	                                }),
+	                                _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.HelpBlock,
+	                                    null,
+	                                    e.help
+	                                )
+	                            );
+	                        })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Modal.Footer,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { onClick: this.handleSubmit },
+	                        'Sign Up'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return SignUp;
+	}(_react2.default.Component);
+
+	exports.default = SignUp;
 
 /***/ }
 /******/ ]);
