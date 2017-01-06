@@ -128,7 +128,6 @@ export default class SignUp extends React.Component {
                 <HelpBlock>The passwords do not match</HelpBlock>
                 </FormGroup>
 
-                
             </form>
             )
         }
