@@ -26445,27 +26445,27 @@
 	            username: '',
 	            email: '',
 	            password: '',
-	            clicked: false
+	            clicked: false,
+	            fields: [{
+	                type: 'username',
+	                title: 'Username',
+	                placeholder: 'Enter username',
+	                func: _this.placeholderFunc.bind(_this),
+	                help: ''
+	            }, {
+	                type: 'email',
+	                title: 'Email',
+	                placeholder: 'Enter email',
+	                func: _this.validEmail.bind(_this),
+	                help: ''
+	            }, {
+	                type: 'password',
+	                title: 'Password',
+	                placeholder: 'Enter password',
+	                func: _this.placeholderFunc.bind(_this),
+	                help: 'The length of your password must be 8 or more characters'
+	            }]
 	        };
-	        _this.fields = [{
-	            type: 'username',
-	            title: 'Username',
-	            placeholder: 'Enter username',
-	            func: _this.placeholderFunc.bind(_this),
-	            help: ''
-	        }, {
-	            type: 'email',
-	            title: 'Email',
-	            placeholder: 'Enter email',
-	            func: _this.validEmail.bind(_this),
-	            help: ''
-	        }, {
-	            type: 'password',
-	            title: 'Password',
-	            placeholder: 'Enter password',
-	            func: _this.placeholderFunc.bind(_this),
-	            help: 'The length of your password must be 8 or more characters'
-	        }];
 	        return _this;
 	    }
 
@@ -26572,7 +26572,7 @@
 	                        _react2.default.createElement(
 	                            _reactBootstrap.Modal.Body,
 	                            null,
-	                            this.fields.map(function (e) {
+	                            this.state.fields.map(function (e) {
 	                                return _react2.default.createElement(
 	                                    'form',
 	                                    null,

@@ -7,37 +7,37 @@ import { SignUp } from '../component/SignUp.jsx'
 export default class MasterPage extends React.Component {
 
     constructor(props) {
-        super(props) 
+        super(props)
         this.state = {
             showModal: false,
             username: '',
             email: '',
             password: '',
-            clicked: false
+            clicked: false,
+            fields : [
+                {
+                    type: 'username',
+                    title: 'Username',
+                    placeholder: 'Enter username',
+                    func: this.placeholderFunc.bind(this),
+                    help: ''
+                },
+                {
+                    type: 'email',
+                    title: 'Email',
+                    placeholder: 'Enter email',
+                    func: this.validEmail.bind(this),
+                    help: ''
+                },
+                {
+                    type: 'password',
+                    title: 'Password',
+                    placeholder: 'Enter password',
+                    func: this.placeholderFunc.bind(this),
+                    help: 'The length of your password must be 8 or more characters'
+                }
+            ]
         }
-        this.fields = [
-            {
-                type: 'username',
-                title: 'Username',
-                placeholder: 'Enter username',
-                func: this.placeholderFunc.bind(this),
-                help: ''
-            },
-            {
-                type: 'email',
-                title: 'Email',
-                placeholder: 'Enter email',
-                func: this.validEmail.bind(this),
-                help: ''
-            },
-            {
-                type: 'password',
-                title: 'Password',
-                placeholder: 'Enter password',
-                func: this.placeholderFunc.bind(this),
-                help: 'The length of your password must be 8 or more characters'
-            }
-        ]
     }
 
     placeholderFunc() {
@@ -52,6 +52,7 @@ export default class MasterPage extends React.Component {
     openModal() {
         this.setState({ showModal: true })
     }
+    
     closeModal() {
         this.setState({ showModal: false })
     }
@@ -95,7 +96,7 @@ export default class MasterPage extends React.Component {
                                     <Modal.Title>Login</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    {this.fields.map(e => (
+                                    {this.state.fields.map(e => (
                                         <form>
                                             <FormGroup
                                             controlId="formBasicText"
@@ -124,6 +125,7 @@ export default class MasterPage extends React.Component {
                 </Modal>
 
                 {this.props.children}
+
             </div>
             )
         }
