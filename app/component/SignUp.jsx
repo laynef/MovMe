@@ -73,7 +73,7 @@ export default class SignUp extends React.Component {
                     type="text"
                     name="username"
                     value={this.state.username}
-                    placeholder="Enter text"
+                    placeholder="Enter Username"
                     onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
@@ -89,7 +89,7 @@ export default class SignUp extends React.Component {
                     type="text"
                     name="email"
                     value={this.state.email}
-                    placeholder="Enter text"
+                    placeholder="Enter Email"
                     onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
@@ -105,7 +105,7 @@ export default class SignUp extends React.Component {
                     type="text"
                     name="password"
                     value={this.state.password}
-                    placeholder="Enter text"
+                    placeholder="Enter Password"
                     onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
@@ -121,7 +121,7 @@ export default class SignUp extends React.Component {
                     type="text"
                     name="rePassword"
                     value={this.state.rePassword}
-                    placeholder="Enter text"
+                    placeholder="Re-Enter Password"
                     onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
