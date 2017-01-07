@@ -1,27 +1,27 @@
-// require('dotenv').config()
-const config = require('../config')
-const Sequelize = require('sequelize')
-// const db = new Sequelize(process.env.dbUrl)
-const db = new Sequelize(config.dbUrl)
+// MongoDB database
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const User = db.define('user', {
-    username: Sequelize.STRING,
-    email: Sequelize.STRING,
-    password: Sequelize.STRING
+// schemas
+const UserSchema = new Schema({
+  username: String,
+  email: String,
+  password: String
 })
 
-const Fav = db.define('favorites', {
-    poster_path: Sequelize.STRING(500),
-    title: Sequelize.STRING(500),
-    overview: Sequelize.STRING(5000),
-    vote_average: Sequelize.STRING(20)
+const FavSchema = new Schema({
+    poster_path: String,
+    title: String,
+    overview: String,
+    vote_average: String
 })
 
-User.hasMany(Fav)
-Fav.belongsTo(User)
+// Models
+let User = mongoose.model('User', UserSchema)
+let Fav = mongoose.model('Fav', FavSchema)
 
-User.sync()
-Fav.sync()
-
-module.exports = User
-module.exports = Fav
+//exports
+module.exports = {
+    User: User,
+    Fav: Fav
+}
