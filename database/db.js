@@ -1,26 +1,50 @@
-// MongoDB database
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const config = require('../config')
+const Sequelize = require('sequelize')
+const db = new Sequelize(config.dbUrl)
 
-// schemas
-const UserSchema = new Schema({
-  username: String,
-  email: String,
-  password: String
+const User = db.define('user', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
+    username: Sequelize.STRING,
+    email: Sequelize.STRING,
+    password: Sequelize.STRING
+}, {
+    tableName: 'UserTable'
 })
 
-const FavSchema = new Schema({
-    poster_path: String,
-    title: String,
-    overview: String,
-    vote_average: String
+const Fav = db.define('Fav', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
+    poster_path: Sequelize.STRING,
+    title: Sequelize.STRING,
+    overview: Sequelize.STRING,
+    vote_average: Sequelize.STRING,
+    UserId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'UserTable',
+            key: 'id'
+        }
+    }
+}, {
+    tableName: 'FavsTable'
 })
 
-// Models
-let User = mongoose.model('User', UserSchema)
-let Fav = mongoose.model('Fav', FavSchema)
+User.hasMany(Fav)
+Fav.belongsTo(User, { foreignKey: { allowNull: false } })
 
-//exports
+User.sync()
+Fav.sync()
+
 module.exports = {
     User: User,
     Fav: Fav

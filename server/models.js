@@ -1,11 +1,10 @@
-const Fav = require('../database/db')
-const User = require('../database/db')
+const db = require('../database/db')
 const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
         login: {
             post: (data, res, req) => {
-                User.findAll({
+                db.User.findAll({
                     where: {
                         username: data.username,
                         email: data.email
@@ -22,7 +21,7 @@ module.exports = {
         },
         register: {
             post: (data, res, req) => {
-                User.findOrCreate({
+                db.User.findOrCreate({
                     where: {
                         email: data.email
                     }
@@ -30,12 +29,12 @@ module.exports = {
                 .spread((user, exists) => {
                     if (!exists) {
                         bcrypt.hash(data.password, data.password.length, (err, hash) => {
-                            User.create({
+                            db.User.create({
                                 username: data.username,
                                 email: data.email,
                                 password: hash
                             })
-                            .then(resp => { console.log('Reistered') })
+                            .then(resp => { console.log('\n\nReistered\n\n') })
                         })
                         .then(resp => {
                             res.status(201)
@@ -53,13 +52,13 @@ module.exports = {
 
     favorites: {
         get: (res) => {
-            Fav.findAll()
+            db.Fav.findAll()
                 .then((resp) => {
                     res.status(200).send(resp)
                 })
         },
         post: (res, data) => {
-            Fav.create({
+            db.Fav.create({
                     poster_path: data.poster_path,
                     title: data.title,
                     overview: data.overview,
@@ -70,7 +69,7 @@ module.exports = {
             })
         },
         delete: (res, data) => {
-            Fav.destroy({
+            db.Fav.destroy({
                     where: {
                         title: data.title
                     }
