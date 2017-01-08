@@ -2,53 +2,39 @@ const db = require('../database/db')
 const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
-        login: {
-            post: (data, res, req) => {
-                db.User.findAll({
-                    where: {
-                        username: data.username,
-                        email: data.email
+
+    login: {
+        post: (data, res, req) => {
+            db.User.findAll({
+                where: {
+                    username: data.username,
+                    email: data.email
+                }
+            })
+            .then(resp => {
+                bcrypt.compare(data.password, resp.password, (err, result) => {
+                    if (result) {
+                        res.send(resp)
                     }
                 })
-                .then(resp => {
-                     bcrypt.compare(data.password, resp.password, (err, result) => {
-                         if (result) {
-                             res.send(resp)
-                         }
-                     })
+            })
+        }
+    },
+
+    register: {
+        post: (data, res, req) => {
+            bcrypt.hash(data.password, null, null, (err, hash) => {
+                db.User.create({
+                    username: data.username,
+                    email: data.email,
+                    password: hash
                 })
-            }
-        },
-        register: {
-            post: (data, res, req) => {
-                db.User.findOrCreate({
-                    where: {
-                        email: data.email
-                    }
+                .then(resp => { 
+                    res.status(201)
                 })
-                .spread((user, exists) => {
-                    if (!exists) {
-                        bcrypt.hash(data.password, data.password.length, (err, hash) => {
-                            db.User.create({
-                                username: data.username,
-                                email: data.email,
-                                password: hash
-                            })
-                            .then(resp => { console.log('\n\nReistered\n\n') })
-                        })
-                        .then(resp => {
-                            res.status(201)
-                        })
-                    } else {
-                        bcrypt.compare(data.password, user.password, (err, result) => {
-                            if (result) {
-                                res.send(user)
-                            }
-                        })
-                    }
-                })
-            }
-        },
+            })
+        }
+    },
 
     favorites: {
         get: (res) => {
